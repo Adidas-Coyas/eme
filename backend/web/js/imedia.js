@@ -27,7 +27,7 @@ if ($('#title').text() == 'Posts') {
 }
 
 /* controlar o simbolo baoxo e lado-esquerdo do menu paginas*/
-$('#pagina').click(function () {
+$('#pagina').click(function () {it 
    // alert($('#flexa').attr('class'));
     //
 
