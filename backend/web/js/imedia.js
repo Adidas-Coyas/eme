@@ -40,67 +40,7 @@ $('#pagina').click(function () {
     }
 });
 
-function compare (string1, string2){
-    var n = string1.localeCompare(string2);
 
-    return n;
-}
-/* controlar os icon do menu detalhes( a faixa preta) */
-$(document).ready(function() {
-   // if (compare($('#iconCabe').attr('class'), 'fas fa-cog')){
 
-    //}
-   // alert('post:');
-
-  /*  alert($('#i').attr('class'));
-    $('#iconCabe').removeClass();
-    alert($('#iconCabe').attr('class'));
-    $('#iconCabe').addClass("fas fa-pencil-alt");
-    alert($('#iconCabe').attr('class'));*/
-
-   /* $('#posts').click(function () {
-        var i;
-        for (i = 0; i < 2000; i++) {
-            console.log("ola");
-        }
-
-        alert($('#i').attr('class'));
-        $('#iconCabe').removeClass();
-        alert($('#iconCabe').attr('class'));
-        $('#iconCabe').addClass("fas fa-pencil-alt");
-        alert($('#iconCabe').attr('class'));
-    });
-
-});*/
-/*$( document ).ready(function() {
-    alert('post:'.$('#title').attr('id'));
-    if ($('#title').attr('id') == 'Posts') {
-        alert('post:'.$('#title').attr('id'));
-
-       // $('#iconCabe').removeClass();
-       // $('#iconCabe').addClass("fas fa-pencil-alt");
-    }else if($('#title').attr('id') == 'Usuarios'){
-       // $('#iconCabe').removeClass();
-       // $('#iconCabe').addClass("fas fa-user");
-        alert('user:'.$('#title').attr('id'));
-    }
-});
-
-  /*  $('#posts').click(function () {
-        // alert($('#flexa').attr('class'));
-        $( document ).ready(function() {
-            $('#iconCabe').removeClass();
-        $('#iconCabe').addClass("fas fa-pencil-alt");
-        });
-
-    });
-    $('#users').click(function () {
-        // alert($('#flexa').attr('class'));
-        $( document ).ready(function() {
-            $('#iconCabe').removeClass();
-            $('#iconCabe').addClass("fas fa-user");
-        });
-
-    });*/
 
 

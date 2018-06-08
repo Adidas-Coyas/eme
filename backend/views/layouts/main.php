@@ -98,13 +98,13 @@ AppAsset::register($this);
                         <span class="badge"><i id="flexa" class="fas fa-chevron-down"></i></span>
                     </a>
                     <span class="dropdown-container">
-                  <a href="Portfolio.php" class="list-group-item"><i class="far fa-file-alt" are-hidden="true"></i> Portfolio</a>
-                  <a href="equipa.php" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Equipa</a>
-                  <a href="parceiros.php" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Parceiros
-                      <span class="badge">0</span></a>
-                  <a href="servicos.php" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Servicos</a>
+                      <a href="" class="list-group-item"><i class="far fa-file-alt" are-hidden="true"></i> Portfolio</a>
+                      <a href="" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Equipa</a>
+                      <a href="" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Parceiros
+                          <span class="badge">0</span></a>
+                      <a href="" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Servicos</a>
 
-                </span>
+                    </span>
                     <?= Html::a('<i class="fas fa-pencil-alt"></i> Posts <span class="badge">0</span>', ['post/index'], ['class' => 'list-group-item', 'id' => 'posts']) ?>
 
                     <?= Html::a('<i class="fas fa-user"></i> Usuarios <span class="badge">0</span>', ['user/index'], ['class' => 'list-group-item', 'id' => 'users']) ?>
