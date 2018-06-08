@@ -1,0 +1,195 @@
+/*
+autor: Ailton Duarte
+data: 23 maio 2018 06:36
+para: Imedia
+*/
+.dixebaxu {
+  margin-top: 10%;
+}
+
+body {
+  background: #f4f4f4;
+}
+
+.navbar {
+  min-height: 33px !important;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.navbar-nav > li > a, .navbar-brand {
+  padding-top: 6px !important;
+  padding-bottom: 0 !important;
+  height: 33px;
+}
+
+.navbar-default {
+  background-color: #A61f50;
+  border-color: #c0392b;
+}
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ffbbbc;
+}
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ffbbbc;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ffbbbc;
+  background-color: #A61f50;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ffbbbc;
+  background-color: #A61f50;
+}
+.navbar-default .navbar-toggle {
+  border-color: #c0392b;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color:#A61f50;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffbbbc;
+}
+/* cor padrao */
+.main-color-bg {
+  background-color: #A61f50 !important;
+  border-color: #A61f50 !important;
+  color: #ffffff !important;
+}
+
+/*header*/
+#header {
+  background: #333333;
+  color: #ffffff;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+#header .create {
+  padding-top: 20px;
+}
+
+/* breadcrumb*/
+.breadcrumb{
+  background: #ebebeb;
+  margin-top: 5px;
+  color: #333333;
+}
+
+.breadcrumb a {
+  color: #333333;
+}
+
+/* dropdown side bar (paginas)*/
+.drop-list {
+  cursor: pointer;
+}
+
+.dropdown-container {
+    display: none;
+    /*background-color: #262626;*/
+}
+
+.dropdown-container .list-group-item {
+  text-indent: 8px;
+}
+
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+/* progress bar */
+.progress-bar {
+  background: #333333;
+  color: #ffffff;
+}
+
+/* formatar content (centralizar) */
+.dash-box {
+  text-align: center;
+}
+a {
+  cursor: pointer;
+}
+/* cor para panel footer */
+.bb:hover {
+  text-decoration: underline;
+  color: #e74c3c
+}
+/* cor pa hover de botons */
+.btn-verde:hover {
+  color:#fff;
+  background-color:#5cb85c;
+  border-color:#4cae4c
+}
+.btn-red:hover {
+  color:#fff;
+  background-color:#A61f50;
+  border-color:#d43f3a;
+}
+
+/* Estilizar footer */
+.footer {
+  background: #333333;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  margin-top: 30px;
+}
+
+/*Estilizar o batao de criar conteúdos rapidos*/
+
+#conteudo {
+  background: #faf4ff;
+  border: 1px solid #d43f3a;
+  color: #0f0f0f;
+
+}
+#conteudo:hover {
+  border: 1px solid #1BBD36;
+  color: #0f0f0f;
+}
+
+/* Media query comessa aqui */
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffbbbc;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffbbbc;
+    background-color: #A61f50;
+  }
+}
