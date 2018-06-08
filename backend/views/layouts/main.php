@@ -39,6 +39,7 @@ AppAsset::register($this);
             <?= Html::a('AdminEME', ['site/index'], ['class' => 'navbar-brand']) ?>
             <?= Html::a('<i class="fas fa-bell"></i><span class="badge">0</span>', [''], ['class' => 'navbar-brand']) ?>
             <?= Html::a('<i class="fas fa-comments"></i></i><span class="badge">0</span>', [''], ['class' => 'navbar-brand']) ?>
+            <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['site/logout'], ['data' => ['method' => 'post'], 'class' => 'navbar-brand mlog']) ?>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">

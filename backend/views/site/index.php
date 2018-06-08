@@ -22,25 +22,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel-body">
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 0</h2>
+                <h2><i class="fas fa-user-tie"></i> 0</h2>
                 <h4>Usuarios</h4>
             </div>
         </div>
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 0</h2>
+                <h2><i class="fas fa-pencil-alt"></i> 0</h2>
                 <h4>Posts</h4>
             </div>
         </div>
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 0</h2>
+                <h2><i class="fas fa-chart-line"></i> 0</h2>
                 <h4>Visitas</h4>
             </div>
         </div>
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 0</h2>
+                <h2><i class="fas fa-comment-dots"></i> 0</h2>
                 <h4>Comentarios</h4>
             </div>
         </div>

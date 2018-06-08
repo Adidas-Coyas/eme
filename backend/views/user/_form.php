@@ -22,6 +22,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'categoria')->dropDownList(['administrador' => 'Administrador', 'gestor' => 'Gestor']) ?>
+
     <?= $form->field($model, 'status')->textInput() ?>
 
     <?= $form->field($model, 'created_at')->textInput() ?>

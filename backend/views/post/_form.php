@@ -1,5 +1,7 @@
 <?php
 
+use dosamigos\ckeditor\CKEditor;
+use dosamigos\ckeditor\CKEditorInline;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -18,9 +20,22 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title_en')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'descricao_pt')->textarea(['rows' => 6]) ?>
+    <!--?// $form->field($model, 'descricao_pt')->textarea(['rows' => 6]) ?-->
 
-    <?= $form->field($model, 'descricao_en')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'descricao_pt')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'basic'
+    ]) ?>
+
+    <?= $form->field($model, 'descricao_en')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'basic'
+    ]) ?>
+
+    <?php CKEditorInline::begin(['preset' => 'basic']);?>
+    This text can be edited now :)
+    <?php CKEditorInline::end();?>
+    <!--?= $form->field($model, 'descricao_en')->textarea(['rows' => 6]) ?-->
 
     <?= $form->field($model, 'midea_pt')->textInput(['maxlength' => true]) ?>
 

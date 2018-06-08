@@ -7,29 +7,35 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Signup';
+$this->title = 'Registrar Usuario';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="panel-heading main-color-bg">
-    <h3 class="panel-title" align="center"><?= $this->title ?></h3>
-</div>
-<div class="panel-body">
-    <div class="col-md-8 col-md-offset-2">
-        <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+<div class="panel panel-default">
+    <div class="panel-heading main-color-bg">
+        <h3 class="panel-title"><?= $this->title ?></h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-8 col-md-offset-2">
+            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-        <?= $form->field($model, 'email') ?>
+            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'categoria')->dropDownList(['administrador' => 'Administrador', 'gestor' => 'Gestor']) ?>
 
-        <div class="form-group">
-            <div class="col-md-4 col-md-offset-4">
-                <?= Html::submitButton('Registrar', ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>
+
+            <?= $form->field($model, 'email') ?>
+
+            <?= $form->field($model, 'password')->passwordInput() ?>
+
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-4">
+                    <?= Html::submitButton('Registrar', ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>
+                </div>
             </div>
-        </div>
 
-        <?php ActiveForm::end(); ?>
+            <?php ActiveForm::end(); ?>
+        </div>
     </div>
 </div>

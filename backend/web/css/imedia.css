@@ -177,8 +177,15 @@ a {
   color: #0f0f0f;
 }
 
+.mlog {
+  display: none;
+}
+
 /* Media query comessa aqui */
 @media (max-width: 767px) {
+  .mlog {
+    display: block;
+  }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #ecf0f1;
   }
