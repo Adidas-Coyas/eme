@@ -37,10 +37,8 @@ AppAsset::register($this);
     <div class="container">
         <div class="navbar-header">
             <?= Html::a('AdminEME', ['site/index'], ['class' => 'navbar-brand']) ?>
-            <?= Html::a('AdminEME', ['site/index'], ['class' => 'navbar-brand']) ?>
-            <?= Html::a('AdminEME', ['site/index'], ['class' => 'navbar-brand']) ?>
-            <a href="#about"><i class="fas fa-bell"></i><span class="badge">0</span> </a>
-            <a href="#about"><i class="fas fa-comments"></i></i><span class="badge">0</span></a>
+            <?= Html::a('<i class="fas fa-bell"></i><span class="badge">0</span>', [''], ['class' => 'navbar-brand']) ?>
+            <?= Html::a('<i class="fas fa-comments"></i></i><span class="badge">0</span>', [''], ['class' => 'navbar-brand']) ?>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
