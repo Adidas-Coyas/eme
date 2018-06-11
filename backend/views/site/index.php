@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel-body">
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><i class="fas fa-user-tie"></i> 0</h2>
+                <h2><i class="fas fa-user-tie"></i> <?= $user ?></h2>
                 <h4>Usuarios</h4>
             </div>
         </div>

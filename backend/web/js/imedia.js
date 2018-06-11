@@ -1,10 +1,9 @@
-/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+// Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("drop-list");
 var i;
 
 for (i = 0; i < dropdown.length; i++) {
   dropdown[i].addEventListener("click", function() {
-    //this.classList.toggle("active");
     var dropdownContent = this.nextElementSibling;
     if (dropdownContent.style.display === "block") {
       dropdownContent.style.display = "none";
@@ -26,9 +25,8 @@ if ($('#title').text() == 'Posts') {
     //alert('usuarios');
 }
 
-/* controlar o simbolo baoxo e lado-esquerdo do menu paginas*/
-$('#pagina').click(function () {it 
-   // alert($('#flexa').attr('class'));
+/* controlar o simbolo baixo e lado-esquerdo do menu paginas*/
+$('#pagina').click(function () {
     //
 
     if($('#flexa').attr('class') == 'fas fa-chevron-down') {

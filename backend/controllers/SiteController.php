@@ -79,8 +79,18 @@ class SiteController extends Controller
      * @return string
      */
     public function actionIndex()
-    {
-        return $this->render('index');
+    {   $data = (new Query())->select('COUNT(*) as num')->from('user')->all();
+        //$post = (new Query())->select('COUNT(*)')->from('post')->all();
+      // $user = (new Query())->select('COUNT(*)')->from('')->all();
+        //$comentario = (new Query())->select('COUNT(*)')->from('comentario')->all();
+        //$num =
+       // print_r($data['num']);
+
+        //die;
+        //return $this->render('index', $data);
+        return $this->render('index', [
+            'user' => $data,
+        ]);
     }
 
     /**
@@ -196,10 +206,9 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionCount($table = 'user'){
+    public function Count($table = 'user'){
         //  $slogan = "Gerencie seu site";
         $num = (new Query())->select('COUNT(*)')->from($table)->all();
-        print_r($num);
-        die;
+        return $num;
     }
 }
