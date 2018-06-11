@@ -1,19 +1,18 @@
 <?php
 
-namespace backend\controllers;
+namespace app\controllers;
 
 use Yii;
-use app\models\User;
-use app\models\SearchUser;
+use app\models\Comentario;
+use app\models\SearchComentario;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use frontend\models\SignupForm;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * ComentarioController implements the CRUD actions for Comentario model.
  */
-class UserController extends Controller
+class ComentarioController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -40,12 +39,12 @@ class UserController extends Controller
     }
 
     /**
-     * Lists all User models.
+     * Lists all Comentario models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SearchUser();
+        $searchModel = new SearchComentario();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -56,7 +55,7 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a single User model.
+     * Displays a single Comentario model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -70,13 +69,13 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new User model.
+     * Creates a new Comentario model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new Comentario();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
@@ -89,7 +88,7 @@ class UserController extends Controller
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing Comentario model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -110,7 +109,7 @@ class UserController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
+     * Deletes an existing Comentario model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -120,40 +119,22 @@ class UserController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'data' => $this->count()]);
+        return $this->redirect(['index', 'data' => $this->count(),]);
     }
 
     /**
-     * Finds the User model based on its primary key value.
+     * Finds the Comentario model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return User the loaded model
+     * @return Comentario the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne($id)) !== null) {
+        if (($model = Comentario::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    public function actionSignup()
-    {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-               /* if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }*/
-                return $this->redirect(['view', 'username' => $model->username, 'data' => $this->count(),]);
-            }
-        }
-
-        return $this->render('signup', [
-            'model' => $model,
-            'data' => $this->count(),
-        ]);
     }
 }

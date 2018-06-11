@@ -8,6 +8,9 @@
 use yii\helpers\Html;
 
 $this->title = $name;
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
 ?>
 <div class="site-error">
 

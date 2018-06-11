@@ -57,6 +57,9 @@ use yii\widgets\Breadcrumbs;
 $slogan = 'Veja e crie Notiçias';
 $this->title = 'Posts';
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
 ?>
 
 

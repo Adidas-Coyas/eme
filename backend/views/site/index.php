@@ -9,7 +9,9 @@ use yii\widgets\Breadcrumbs;
 //$slogan = 'Gerencie seu site';
 $this->title = 'Dashboard';
 $this->params['breadcrumbs'][] = $this->title;
-
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
 
 ?>
 
@@ -22,13 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel-body">
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><i class="fas fa-user-tie"></i> <?= $user ?></h2>
+                <h2><i class="fas fa-user-tie"></i> <?=  $data['user'] ?></h2>
                 <h4>Usuarios</h4>
             </div>
         </div>
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><i class="fas fa-pencil-alt"></i> 0</h2>
+                <h2><i class="fas fa-pencil-alt"></i> <?=  $data['post'] ?></h2>
                 <h4>Posts</h4>
             </div>
         </div>
@@ -40,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><i class="fas fa-comment-dots"></i> 0</h2>
+                <h2><i class="fas fa-comment-dots"></i> <?= $data['comentario'] ?></h2>
                 <h4>Comentarios</h4>
             </div>
         </div>
@@ -58,14 +60,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td><span class="glyphicon glyphicon-user" aria-hidden="true"> Usuarios</td>
                 <td>comentario</td>
             </tr>
-            <tr>
-                <td> <img src="assets/user/protester.jpg" alt="" width="50" height="50"> Ailton Mendes Duarte</td>
-                <td>comentarios...</td>
-            </tr>
-            <tr>
-                <td> <img src="assets/user/protester.jpg" alt="" width="50" height="50"> Steev Rogers</td>
-                <td>comentarios...</td>
-            </tr>
+
+            <?php
+
+            print_r($comment);
+                foreach ($comment as $comments){
+                    print($comments);
+                    /*echo "<tr>";
+                    echo "<td> <img src=\"assets/user/protester.jpg\"  width=\"50\" height=\"50\">'.$comments->autor.'</td>";
+                    echo "<td>'.$comments->comentario.'</td>";
+                    echo "</tr>";*/
+                }
+            ?>
+            <!--
             <tr>
                 <td> <img src="assets/user/protester.jpg" alt="" width="50" height="50"> Aminotep bulsanov</td>
                 <td>comentarios...</td>
@@ -73,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <tr>
                 <td> <img src="assets/user/protester.jpg" alt="" width="50" height="50"> Krugral kricrolagran</td>
                 <td>comentarios...</td>
-            </tr>
+            </tr>-->
         </table>
     </div>
     <div class="panel-footer btn btn-block bb">Ver Todos</div>

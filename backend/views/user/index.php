@@ -9,6 +9,9 @@ use yii\grid\GridView;
 
 $this->title = 'Usuarios';
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
 ?>
 
     <div class="panel panel-default">

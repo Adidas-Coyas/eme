@@ -101,13 +101,13 @@ AppAsset::register($this);
                       <a href="" class="list-group-item"><i class="far fa-file-alt" are-hidden="true"></i> Portfolio</a>
                       <a href="" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Equipa</a>
                       <a href="" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Parceiros
-                          <span class="badge">0</span></a>
+                          <span class="badge"><?= $this->params['parceiro']; ?></span></a>
                       <a href="" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Servicos</a>
 
                     </span>
-                    <?= Html::a('<i class="fas fa-pencil-alt"></i> Posts <span class="badge">0</span>', ['post/index'], ['class' => 'list-group-item', 'id' => 'posts']) ?>
+                    <?= Html::a('<i class="fas fa-pencil-alt"></i> Posts <span class="badge">'. $this->params['post'].'</span>', ['post/index'], ['class' => 'list-group-item', 'id' => 'posts']) ?>
 
-                    <?= Html::a('<i class="fas fa-user"></i> Usuarios <span class="badge">0</span>', ['user/index'], ['class' => 'list-group-item', 'id' => 'users']) ?>
+                    <?= Html::a('<i class="fas fa-user"></i> Usuarios <span class="badge">'. $this->params['user'].'</span>', ['user/index'], ['class' => 'list-group-item', 'id' => 'users']) ?>
                 </div>
                 <div class="well">
                     <h4>Posts Visitados</h4>

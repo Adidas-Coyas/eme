@@ -73,23 +73,33 @@ class SiteController extends Controller
         ];
     }
 
+
+    public function count(){
+        $data['user'] = (new \yii\db\Query())->from('user')->where(['status' => 10])->count();
+        $data['post'] = (new \yii\db\Query())->from('post')->count();
+        $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
+        $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
+
+        return $data;
+    }
     /**
      * Displays homepage.
      *
      * @return string
      */
     public function actionIndex()
-    {   $data = (new Query())->select('COUNT(*) as num')->from('user')->all();
-        //$post = (new Query())->select('COUNT(*)')->from('post')->all();
-      // $user = (new Query())->select('COUNT(*)')->from('')->all();
-        //$comentario = (new Query())->select('COUNT(*)')->from('comentario')->all();
-        //$num =
-       // print_r($data['num']);
+    {
+        $rows = (new \yii\db\Query())
+            ->select(['autor', 'comentario'])
+            ->from('comentario')
+            ->all();
 
+        //$dados = $rows->autor;
+        //print_r($rows[1]->autor);
         //die;
-        //return $this->render('index', $data);
         return $this->render('index', [
-            'user' => $data,
+            'data' => $this->count(),
+            'comment' => $rows,
         ]);
     }
 
@@ -114,6 +124,7 @@ class SiteController extends Controller
 
             return $this->render('login', [
                 'model' => $model,
+                'data' => $this->count(),
             ]);
         }
     }
@@ -197,18 +208,14 @@ class SiteController extends Controller
                     ->one();
               //  print_r($id);
                 //die;
-                return $this->redirect(['user/view', 'id' => $id['id']]);
+                return $this->redirect(['user/view', 'id' => $id['id'], 'data' => $this->count(),]);
             }
         }
 
         return $this->render('signup', [
             'model' => $model,
+            'data' => $this->count(),
         ]);
     }
 
-    public function Count($table = 'user'){
-        //  $slogan = "Gerencie seu site";
-        $num = (new Query())->select('COUNT(*)')->from($table)->all();
-        return $num;
-    }
 }

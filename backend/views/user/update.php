@@ -9,6 +9,9 @@ $this->title = 'Update User: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
 ?>
 <div class="user-update">
 
