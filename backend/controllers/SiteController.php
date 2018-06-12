@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 // esses aqui vieram do frontend
+use app\models\Comentario;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -94,8 +95,10 @@ class SiteController extends Controller
             ->from('comentario')
             ->all();
 
+       // $rows = Comentario::find()->select(['autor', 'comentario'])->all();
+
         //$dados = $rows->autor;
-        //print_r($rows[1]->autor);
+        //print_r($rows);
         //die;
         return $this->render('index', [
             'data' => $this->count(),

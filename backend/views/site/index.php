@@ -63,13 +63,13 @@ $this->params['parceiro'] = $data['parceiro'];
 
             <?php
 
-            print_r($comment);
-                foreach ($comment as $comments){
-                    print($comments);
-                    /*echo "<tr>";
-                    echo "<td> <img src=\"assets/user/protester.jpg\"  width=\"50\" height=\"50\">'.$comments->autor.'</td>";
-                    echo "<td>'.$comments->comentario.'</td>";
-                    echo "</tr>";*/
+            //print_r($comment);
+               foreach ($comment as $comments){
+                    //echo $comments['autor'];
+                    echo "<tr>";
+                    echo "<td> <img src=\"assets/user/protester.jpg\"  width=\"50\" height=\"50\">".$comments['autor']."</td>";
+                    echo "<td>".$comments['comentario']."</td>";
+                    echo "</tr>";
                 }
             ?>
             <!--
