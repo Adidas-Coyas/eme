@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\Post;
-use app\models\SearchPost;
+use app\models\Galeria;
+use app\models\SearchGaleria;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PostController implements the CRUD actions for Post model.
+ * GaleriaController implements the CRUD actions for Galeria model.
  */
-class PostController extends Controller
+class GaleriaController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -29,38 +29,23 @@ class PostController extends Controller
         ];
     }
 
-    public function count(){
-        $data['user'] = (new \yii\db\Query())->from('user')->where(['status' => 10])->count();
-        $data['post'] = (new \yii\db\Query())->from('post')->count();
-        $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
-        $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
-
-        return $data;
-    }
-
     /**
-     * Lists all Post models.
+     * Lists all Galeria models.
      * @return mixed
      */
     public function actionIndex()
     {
-
-        $searchModel = new SearchPost();
+        $searchModel = new SearchGaleria();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'data' => $this->count(),
         ]);
     }
 
-
-
     /**
-     * Displays a single Post model.
+     * Displays a single Galeria model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -69,31 +54,29 @@ class PostController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'data' => $this->count(),
         ]);
     }
 
     /**
-     * Creates a new Post model.
+     * Creates a new Galeria model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Post();
+        $model = new Galeria();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'data' => $this->count(),
         ]);
     }
 
     /**
-     * Updates an existing Post model.
+     * Updates an existing Galeria model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -104,17 +87,16 @@ class PostController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'data' => $this->count(),
         ]);
     }
 
     /**
-     * Deletes an existing Post model.
+     * Deletes an existing Galeria model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -124,19 +106,19 @@ class PostController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'data' => $this->count(),]);
+        return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Post model based on its primary key value.
+     * Finds the Galeria model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Post the loaded model
+     * @return Galeria the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Post::findOne($id)) !== null) {
+        if (($model = Galeria::findOne($id)) !== null) {
             return $model;
         }
 

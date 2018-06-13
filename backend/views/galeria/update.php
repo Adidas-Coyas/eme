@@ -3,17 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Post */
+/* @var $model app\models\Galeria */
 
-$this->title = 'Update Post: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
+$this->title = 'Update Galeria: ' . $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Galerias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
-$this->params['user'] = $data['user'];
-$this->params['post'] = $data['post'];
-$this->params['parceiro'] = $data['parceiro'];
 ?>
-<div class="post-update">
+<div class="galeria-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
