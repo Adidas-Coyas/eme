@@ -23,10 +23,10 @@ $this->params['parceiro'] = $data['parceiro'];
             <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger delete',
-              /*  'data' => [
+                'data' => [
                     'confirm' => 'Tens a  certeza que desajas apagar este usuario?',
                     'method' => 'post',
-                ],*/
+                ],
             ]) ?>
         </p>
 
