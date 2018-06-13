@@ -9,14 +9,20 @@ use yii\grid\GridView;
 
 $this->title = 'Portfolios';
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
+$this->params['title'] = $this->title;
+
+
 ?>
 <div class="portfolio-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Portfolio', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Adicionar Portfolio', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

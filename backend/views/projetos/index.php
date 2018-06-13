@@ -9,14 +9,18 @@ use yii\grid\GridView;
 
 $this->title = 'Projetos';
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
+$this->params['title'] = $this->title;
 ?>
 <div class="projetos-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Projetos', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Adicionar Projeto', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

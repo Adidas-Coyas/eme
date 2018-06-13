@@ -13,12 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['title'] = $this->title;
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading main-color-bg">
-        <h3 class="panel-title"><?= $this->title ?></h3>
-    </div>
-    <div class="panel-body">
+
         <p><?= Html::a('Novo Usuario', ['site/signup'], ['class' => 'btn btn-primary']) ?></p>
         <?= DataTables::widget([
             'dataProvider' => $dataProvider,
@@ -67,6 +64,4 @@ $this->params['parceiro'] = $data['parceiro'];
             ],
         ]);?>
 
-    </div>
-</div>
 

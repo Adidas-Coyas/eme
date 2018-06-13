@@ -12,14 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['title'] = $this->title;
 ?>
 
 
-<div class="panel panel-default">
-    <div class="panel-heading main-color-bg">
-        <h3 class="panel-title"><?= $this->title ?></h3>
-    </div>
-    <div class="panel-body">
+
         <div class="col-md-10 col-md-offset-1">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
@@ -40,5 +37,3 @@ $this->params['parceiro'] = $data['parceiro'];
 
             <?php ActiveForm::end(); ?>
         </div>
-    </div>
-</div>

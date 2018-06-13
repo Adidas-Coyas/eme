@@ -7,16 +7,18 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\SearchEme */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Emes';
+$this->title = 'Sobre nos';
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
+$this->params['title'] = $this->title;
 ?>
 <div class="eme-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Eme', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Sobre Nos', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

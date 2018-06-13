@@ -14,6 +14,7 @@ use Yii;
  * @property string $created_at
  * @property string $update_at
  * @property int $publicar
+ * @property string $publicado_at
  * @property int $id_user
  * @property string $lang
  *
@@ -37,10 +38,10 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'title', 'descricao', 'anexo', 'created_at', 'update_at', 'publicar', 'id_user'], 'required'],
+            [['id', 'title', 'descricao', 'anexo', 'id_user'], 'required'],
             [['id', 'publicar', 'id_user'], 'integer'],
             [['descricao', 'lang'], 'string'],
-            [['created_at', 'update_at'], 'safe'],
+            [['created_at', 'update_at', 'publicado_at'], 'safe'],
             [['title', 'anexo'], 'string', 'max' => 100],
             [['id'], 'unique'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
@@ -54,14 +55,15 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'descricao' => 'Descricao',
+            'title' => 'Titulo',
+            'descricao' => 'Descrição',
             'anexo' => 'Anexo',
-            'created_at' => 'Created At',
-            'update_at' => 'Update At',
+            'created_at' => 'Criado em',
+            'update_at' => 'Atualizado em',
             'publicar' => 'Publicar',
-            'id_user' => 'Id User',
-            'lang' => 'Lang',
+            'publicado_at' => 'Publicado em',
+            'id_user' => 'Usuario',
+            'lang' => 'Lingua',
         ];
     }
 

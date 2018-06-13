@@ -98,11 +98,14 @@ AppAsset::register($this);
                         <span class="badge"><i id="flexa" class="fas fa-chevron-down"></i></span>
                     </a>
                     <span class="dropdown-container">
-                      <a href="" class="list-group-item"><i class="far fa-file-alt" are-hidden="true"></i> Portfolio</a>
-                      <a href="" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Equipa</a>
-                      <a href="" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Parceiros
-                          <span class="badge"><?= $this->params['parceiro']; ?></span></a>
-                      <a href="" class="list-group-item"><i class="far fa-file-alt"  are-hidden="true"></i> Servicos</a>
+                        <?= Html::a('<i class="far fa-file-alt" are-hidden="true"></i> Portfolio', ['portfolio/index'], ['class' => 'list-group-item', 'id' => '']) ?>
+                        <?= Html::a('<i class="far fa-file-alt" are-hidden="true"></i> Projectos', ['pprojetos/index'], ['class' => 'list-group-item', 'id' => '']) ?>
+                        <?= Html::a('<i class="far fa-file-alt"  are-hidden="true"></i> Equipa', ['equipa/index'], ['class' => 'list-group-item', 'id' => '']) ?>
+                        <?= Html::a('<i class="far fa-file-alt"  are-hidden="true"></i> Parceiros<span class="badge">'.$this->params['user'].'</span>', ['parceiros/index'], ['class' => 'list-group-item', 'id' => '']) ?>
+                        <?= Html::a('<i class="far fa-file-alt"  are-hidden="true"></i> Servicos', ['servicos/index'], ['class' => 'list-group-item', 'id' => '']) ?>
+                        <?= Html::a('<i class="far fa-file-alt" are-hidden="true"></i> Testimunhos <span class="badge">'. $this->params['user'].'</span>', ['testimunhos/index'], ['class' => 'list-group-item', 'id' => '']) ?>
+
+                        <?= Html::a('<i class="far fa-file-alt"  are-hidden="true"></i> Sobre Nos', ['eme/index'], ['class' => 'list-group-item', 'id' => '']) ?>
 
                     </span>
                     <?= Html::a('<i class="fas fa-pencil-alt"></i> Posts <span class="badge">'. $this->params['post'].'</span>', ['post/index'], ['class' => 'list-group-item', 'id' => 'posts']) ?>
@@ -128,7 +131,14 @@ AppAsset::register($this);
             </div>
             <div class="col-md-9">
                 <!-- index views here -->
-                <?= $content ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading main-color-bg">
+                        <h3 class="panel-title"><?= $this->params['title'] ?></h3>
+                    </div>
+                    <div class="panel-body">
+                        <?= $content ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

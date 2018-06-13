@@ -7,16 +7,19 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\SearchGaleria */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Galerias';
+$this->title = 'Galeria';
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
+$this->params['title'] = $this->title;
 ?>
 <div class="galeria-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Galeria', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Adicionar Galeria', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

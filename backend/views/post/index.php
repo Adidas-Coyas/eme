@@ -13,14 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['title'] = $this->title;
 ?>
 
-<div class="panel panel-default">
-    <div class="panel-heading main-color-bg">
-        <h3 class="panel-title"><?= $this->title ?></h3>
-    </div>
-    <div class="panel-body">
+<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
         <p><?= Html::a('Novo Post', ['create'], ['class' => 'btn btn-success']) ?></p>
+
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
@@ -40,7 +39,6 @@ $this->params['parceiro'] = $data['parceiro'];
                 ['class' => 'yii\grid\ActionColumn'],
             ],
         ]); ?>
-    </div>
-</div>
-<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+
 

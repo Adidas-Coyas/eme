@@ -26,9 +26,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'publicar')->textInput() ?>
 
+    <?= $form->field($model, 'publicado_at')->textInput() ?>
+
     <?= $form->field($model, 'id_user')->textInput() ?>
 
-    <?= $form->field($model, 'lang')->dropDownList([ 'pt' => 'Pt', 'en' => 'En', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'lang')->dropDownList([ 'pt' => 'Português', 'en' => 'Ingles', ], ['prompt' => 'Escolha linguagem...']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

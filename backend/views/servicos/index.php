@@ -9,14 +9,17 @@ use yii\grid\GridView;
 
 $this->title = 'Servicos';
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
+$this->params['title'] = $this->title;
 ?>
 <div class="servicos-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Servicos', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Adicionar Serviços', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

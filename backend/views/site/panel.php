@@ -2,43 +2,19 @@
 <!-- Ultimos Usuarios -->
 <div class="panel panel-default">
   <div class="panel-heading main-color-bg">
-    <h3 class="panel-title">Ultimos Usuarios</h3>
+    <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
   </div>
   <div class="panel-body">
     Panel content
   </div>
 </div>
 <!-- para centalizar os form -->
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-10 col-md-offset-1">
 
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading main-color-bg">
-        <h3 class="panel-title"><?= $this->title ?></h3>
-    </div>
-    <div class="panel-body">
-        <p><?= Html::a('Novo Usuario', ['site/signup'], ['class' => 'btn btn-primary']) ?></p>
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
+$this->params['user'] = $data['user'];
+$this->params['post'] = $data['post'];
+$this->params['parceiro'] = $data['parceiro'];
+$this->params['title'] = $this->title;
 
-                //'id',
-                'username',
-                //'auth_key',
-                //'password_hash',
-                //'password_reset_token',
-                'email:email',
-                'categoria',
-                'status',
-                //'created_at',
-                //'updated_at',
-
-                ['class' => 'yii\grid\ActionColumn'],
-            ],
-        ]);
-        ?>
-    </div>
-</div>
