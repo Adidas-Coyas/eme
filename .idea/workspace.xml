@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fffd18d3-f2ba-4596-94a3-9bc66d3f4f3f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/views/post/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/views/post/_form.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/web/js/imedia.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/js/imedia.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +19,8 @@
       <file leaf-file-name="imedia.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/web/js/imedia.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+            <state relative-caret-position="534">
+              <caret line="60" column="2" selection-start-line="60" selection-start-column="2" selection-end-line="60" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -303,7 +302,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75802000" />
+    <option name="totallyTimeSpent" value="76342000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="1366" height="741" extended-state="6" />
@@ -729,8 +728,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/web/js/imedia.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+        <state relative-caret-position="534">
+          <caret line="60" column="2" selection-start-line="60" selection-start-column="2" selection-end-line="60" selection-end-column="2" />
         </state>
       </provider>
     </entry>
