@@ -1,5 +1,6 @@
 <?php
 
+use dosamigos\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,7 +17,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'descricao')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'descricao')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'basic'
+    ]) ?>
+
+    <!-- $form->field($model, 'descricao')->textarea(['rows' => 6]) ?-->
 
     <?= $form->field($model, 'anexo')->textInput(['maxlength' => true]) ?>
 
