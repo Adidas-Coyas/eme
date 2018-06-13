@@ -13,35 +13,38 @@ $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
 ?>
-<div class="user-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="panel panel-default">
+    <div class="panel-heading main-color-bg">
+        <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
+    </div>
+    <div class="panel-body">
+        <p>
+            <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Tens a  certeza que desajas apagar este usuario?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                //'id',
+                'username',
+                //'auth_key',
+                //'password_hash',
+                //'password_reset_token',
+                'email:email',
+                'categoria',
+                'status',
+                'created_at',
+                'updated_at',
             ],
         ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
-            'email:email',
-            'categoria',
-            'status',
-            'created_at',
-            'updated_at',
-        ],
-    ]) ?>
-
+    </div>
 </div>
+

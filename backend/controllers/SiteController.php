@@ -90,21 +90,22 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $rows = (new \yii\db\Query())
+       /* $rows = (new \yii\db\Query())
             ->select(['autor', 'comentario'])
             ->from('comentario')
-            ->all();
+            ->limit(3);*/
 
-       // $rows = Comentario::find()->select(['autor', 'comentario'])->all();
+        $rows = Comentario::find()->select(['autor', 'comentario'])->all();
 
         //$dados = $rows->autor;
         //print_r($rows);
-        //die;
+       // die;
         return $this->render('index', [
             'data' => $this->count(),
             'comment' => $rows,
         ]);
     }
+
 
     /**
      * Login action.
