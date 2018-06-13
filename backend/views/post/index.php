@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii2mod\alert\Alert;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SearchPost */
@@ -26,15 +27,15 @@ $this->params['title'] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
 
-                'id',
+                //'id',
                 'title',
-                'descricao:ntext',
-                'anexo',
+                //'descricao:ntext',
+                //'anexo',
                 'created_at',
-                //'update_at',
+                'update_at',
                 //'publicar',
                 //'id_user',
-                //'lang',
+                'lang',
 
                 ['class' => 'yii\grid\ActionColumn'],
             ],

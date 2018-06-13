@@ -11,6 +11,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/inputmask" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/jquery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/punycode" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/sweetalert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/typeahead.js" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/yii2-pjax" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cebe/markdown" />
@@ -68,6 +69,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/theseer/tokenizer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yii2mod/yii2-sweet-alert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-bootstrap" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-composer" />

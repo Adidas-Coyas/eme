@@ -76,6 +76,8 @@
       <path value="$PROJECT_DIR$/vendor/bower-asset/datatables" />
       <path value="$PROJECT_DIR$/vendor/bower-asset/datatables-bootstrap3" />
       <path value="$PROJECT_DIR$/vendor/bower-asset/datatables-tabletools" />
+      <path value="$PROJECT_DIR$/vendor/bower-asset/sweetalert" />
+      <path value="$PROJECT_DIR$/vendor/yii2mod/yii2-sweet-alert" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />

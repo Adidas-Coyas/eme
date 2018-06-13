@@ -1,6 +1,8 @@
 <?php
 
+
 use yii\helpers\Html;
+use yii2mod\alert\Alert;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
@@ -15,11 +17,9 @@ $this->params['parceiro'] = $data['parceiro'];
 $this->params['title'] = $this->title;
 ?>
 <div class="post-update">
-
     <div class="col-md-10 col-md-offset-1">
         <?= $this->render('_form', [
             'model' => $model,
         ]) ?>
     </div>
-
 </div>

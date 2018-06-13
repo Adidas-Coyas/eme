@@ -14,6 +14,7 @@ return array(
     'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap/src'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'yii2mod\\alert\\' => array($vendorDir . '/yii2mod/yii2-sweet-alert'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/type-resolver/src', $vendorDir . '/phpdocumentor/reflection-docblock/src'),
     'himiklab\\yii2\\recaptcha\\' => array($vendorDir . '/himiklab/yii2-recaptcha-widget'),
     'fedemotta\\datatables\\' => array($vendorDir . '/fedemotta/yii2-widget-datatables'),
