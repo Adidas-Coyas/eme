@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use fedemotta\datatables\DataTables;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SearchUser */
@@ -13,33 +14,59 @@ $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
 ?>
-
-    <div class="panel panel-default">
-        <div class="panel-heading main-color-bg">
-            <h3 class="panel-title"><?= $this->title ?></h3>
-        </div>
-        <div class="panel-body">
-            <?= Html::a('Create User', ['site/signup'], ['class' => 'btn btn-success']) ?>
-            <?= GridView::widget([
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
-
-                    //'id',
-                    'username',
-                    //'auth_key',
-                    //'password_hash',
-                    //'password_reset_token',
-                    'email:email',
-                    'categoria',
-                    'status',
-                    //'created_at',
-                    //'updated_at',
-
-                    ['class' => 'yii\grid\ActionColumn'],
-                ],
-            ]);
-            ?>
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading main-color-bg">
+        <h3 class="panel-title"><?= $this->title ?></h3>
     </div>
+    <div class="panel-body">
+        <p><?= Html::a('Novo Usuario', ['site/signup'], ['class' => 'btn btn-primary']) ?></p>
+        <?= DataTables::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+
+                //'id',
+                'username',
+                //'auth_key',
+                //'password_hash',
+                //'password_reset_token',
+                'email:email',
+                'categoria',
+                'status',
+                //'created_at',
+                //'updated_at',
+
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+            'clientOptions' => [
+                //"lengthMenu"=> [[20,-1], [20,Yii::t('app',"Todos")]],
+                "info"=>false,
+                "responsive"=>true,
+                "dom"=> 'lfTrtip',
+                "tableTools"=>[
+                    "aButtons"=> [
+                        [
+                            "sExtends"=> "copy",
+                            "sButtonText"=> Yii::t('app',"Copy to clipboard")
+                        ],[
+                            "sExtends"=> "csv",
+                            "sButtonText"=> Yii::t('app',"Save to CSV")
+                        ],[
+                            "sExtends"=> "xls",
+                            "oSelectorOpts"=> ["page"=> 'current']
+                        ],[
+                            "sExtends"=> "pdf",
+                            "sButtonText"=> Yii::t('app',"Save to PDF")
+                        ],[
+                            "sExtends"=> "print",
+                            "sButtonText"=> Yii::t('app',"Print")
+                        ],
+                    ]
+                ]
+            ],
+        ]);?>
+
+    </div>
+</div>
+

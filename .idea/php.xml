@@ -72,6 +72,10 @@
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-debug" />
       <path value="$PROJECT_DIR$/vendor/ckeditor/ckeditor" />
       <path value="$PROJECT_DIR$/vendor/2amigos/yii2-ckeditor-widget" />
+      <path value="$PROJECT_DIR$/vendor/fedemotta/yii2-widget-datatables" />
+      <path value="$PROJECT_DIR$/vendor/bower-asset/datatables" />
+      <path value="$PROJECT_DIR$/vendor/bower-asset/datatables-bootstrap3" />
+      <path value="$PROJECT_DIR$/vendor/bower-asset/datatables-tabletools" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />

@@ -20,7 +20,7 @@ $this->params['parceiro'] = $data['parceiro'];
         <h3 class="panel-title"><?= $this->title ?></h3>
     </div>
     <div class="panel-body">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
             <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>

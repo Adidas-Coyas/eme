@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\User */
 
 $this->title = $model->username;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
@@ -22,11 +22,11 @@ $this->params['parceiro'] = $data['parceiro'];
         <p>
             <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
+                'class' => 'btn btn-danger delete',
+              /*  'data' => [
                     'confirm' => 'Tens a  certeza que desajas apagar este usuario?',
                     'method' => 'post',
-                ],
+                ],*/
             ]) ?>
         </p>
 
