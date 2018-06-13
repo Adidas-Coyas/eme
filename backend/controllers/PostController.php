@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace app\controllers;
 
 use Yii;
 use app\models\Post;
@@ -29,33 +29,20 @@ class PostController extends Controller
         ];
     }
 
-    public function count(){
-        $data['user'] = (new \yii\db\Query())->from('user')->where(['status' => 10])->count();
-        $data['post'] = (new \yii\db\Query())->from('post')->count();
-        $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
-        $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
-
-        return $data;
-    }
-
     /**
      * Lists all Post models.
      * @return mixed
      */
     public function actionIndex()
     {
-
         $searchModel = new SearchPost();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'data' => $this->count(),
         ]);
     }
-
-
 
     /**
      * Displays a single Post model.
@@ -67,7 +54,6 @@ class PostController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'data' => $this->count(),
         ]);
     }
 
@@ -81,12 +67,11 @@ class PostController extends Controller
         $model = new Post();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'data' => $this->count(),
         ]);
     }
 
@@ -102,12 +87,11 @@ class PostController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'data' => $this->count(),
         ]);
     }
 
@@ -122,7 +106,7 @@ class PostController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'data' => $this->count(),]);
+        return $this->redirect(['index']);
     }
 
     /**

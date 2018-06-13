@@ -18,8 +18,8 @@ class SearchPost extends Post
     public function rules()
     {
         return [
-            [['id', 'id_user'], 'integer'],
-            [['title_pt', 'title_en', 'descricao_pt', 'descricao_en', 'midea_pt', 'midea_en', 'anexo_pt', 'anexo_en', 'created_at', 'update_at'], 'safe'],
+            [['id', 'publicar', 'id_user'], 'integer'],
+            [['title', 'descricao', 'anexo', 'created_at', 'update_at', 'lang'], 'safe'],
         ];
     }
 
@@ -62,17 +62,14 @@ class SearchPost extends Post
             'id' => $this->id,
             'created_at' => $this->created_at,
             'update_at' => $this->update_at,
+            'publicar' => $this->publicar,
             'id_user' => $this->id_user,
         ]);
 
-        $query->andFilterWhere(['like', 'title_pt', $this->title_pt])
-            ->andFilterWhere(['like', 'title_en', $this->title_en])
-            ->andFilterWhere(['like', 'descricao_pt', $this->descricao_pt])
-            ->andFilterWhere(['like', 'descricao_en', $this->descricao_en])
-            ->andFilterWhere(['like', 'midea_pt', $this->midea_pt])
-            ->andFilterWhere(['like', 'midea_en', $this->midea_en])
-            ->andFilterWhere(['like', 'anexo_pt', $this->anexo_pt])
-            ->andFilterWhere(['like', 'anexo_en', $this->anexo_en]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'descricao', $this->descricao])
+            ->andFilterWhere(['like', 'anexo', $this->anexo])
+            ->andFilterWhere(['like', 'lang', $this->lang]);
 
         return $dataProvider;
     }

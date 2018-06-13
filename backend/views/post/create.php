@@ -9,9 +9,6 @@ use yii\helpers\Html;
 $this->title = 'Create Post';
 $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-$this->params['user'] = $data['user'];
-$this->params['post'] = $data['post'];
-$this->params['parceiro'] = $data['parceiro'];
 ?>
 <div class="post-create">
 

@@ -9,9 +9,6 @@ use yii\grid\GridView;
 
 $this->title = 'Comentarios';
 $this->params['breadcrumbs'][] = $this->title;
-$this->params['user'] = $data['user'];
-$this->params['post'] = $data['post'];
-$this->params['parceiro'] = $data['parceiro'];
 ?>
 <div class="comentario-index">
 
@@ -28,13 +25,13 @@ $this->params['parceiro'] = $data['parceiro'];
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+            'id',
             'autor',
             'comentario:ntext',
-            //'created_at',
-            //'updated_at',
+            'created_at',
+            'updated_at',
             //'respondeu',
-            'id_post',
+            //'id_post',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
