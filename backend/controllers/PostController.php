@@ -44,7 +44,6 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
-
         $searchModel = new SearchPost();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -54,8 +53,6 @@ class PostController extends Controller
             'data' => $this->count(),
         ]);
     }
-
-
 
     /**
      * Displays a single Post model.

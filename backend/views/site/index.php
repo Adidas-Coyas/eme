@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
-
+$this->params['title'] = $this->title;
 ?>
 
 <!-- index here -->

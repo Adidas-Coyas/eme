@@ -1,7 +1,5 @@
 <?php
 
-use dosamigos\ckeditor\CKEditor;
-use dosamigos\ckeditor\CKEditorInline;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,40 +14,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id')->textInput() ?>
 
-    <?= $form->field($model, 'title_pt')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'title_en')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'descricao')->textarea(['rows' => 6]) ?>
 
-    <!--?// $form->field($model, 'descricao_pt')->textarea(['rows' => 6]) ?-->
-
-    <?= $form->field($model, 'descricao_pt')->widget(CKEditor::className(), [
-        'options' => ['rows' => 6],
-        'preset' => 'basic'
-    ]) ?>
-
-    <?= $form->field($model, 'descricao_en')->widget(CKEditor::className(), [
-        'options' => ['rows' => 6],
-        'preset' => 'basic'
-    ]) ?>
-
-    <?php CKEditorInline::begin(['preset' => 'basic']);?>
-    This text can be edited now :)
-    <?php CKEditorInline::end();?>
-    <!--?= $form->field($model, 'descricao_en')->textarea(['rows' => 6]) ?-->
-
-    <?= $form->field($model, 'midea_pt')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'midea_en')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'anexo_pt')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'anexo_en')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'anexo')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 
     <?= $form->field($model, 'update_at')->textInput() ?>
 
+    <?= $form->field($model, 'publicar')->textInput() ?>
+
+    <?= $form->field($model, 'publicado_at')->textInput() ?>
+
     <?= $form->field($model, 'id_user')->textInput() ?>
+
+    <?= $form->field($model, 'lang')->dropDownList([ 'pt' => 'Português', 'en' => 'Ingles', ], ['prompt' => 'Escolha linguagem...']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -34,7 +34,6 @@ class ComentarioController extends Controller
         $data['post'] = (new \yii\db\Query())->from('post')->count();
         $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
         $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
-        //$data['parceiro'] = Parceiro::find()->count();
 
         return $data;
     }
@@ -79,7 +78,7 @@ class ComentarioController extends Controller
         $model = new Comentario();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
+            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
         return $this->render('create', [
@@ -100,7 +99,7 @@ class ComentarioController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
+            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
         return $this->render('update', [
@@ -120,7 +119,7 @@ class ComentarioController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'data' => $this->count(),]);
+        return $this->redirect(['index', 'data' => $this->count()]);
     }
 
     /**

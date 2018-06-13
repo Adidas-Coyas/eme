@@ -6,23 +6,22 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 
-$this->title = $model->id;
+$this->title = 'Posts';
 $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['title'] = 'Post: '.$model->title;
 ?>
 <div class="post-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Quer  mesmo apagar este item?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -32,17 +31,14 @@ $this->params['parceiro'] = $data['parceiro'];
         'model' => $model,
         'attributes' => [
             'id',
-            'title_pt',
-            'title_en',
-            'descricao_pt:ntext',
-            'descricao_en:ntext',
-            'midea_pt',
-            'midea_en',
-            'anexo_pt',
-            'anexo_en',
+            'title',
+            'descricao:ntext',
+            'anexo',
             'created_at',
             'update_at',
+            'publicar',
             'id_user',
+            'lang',
         ],
     ]) ?>
 

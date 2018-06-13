@@ -38,7 +38,9 @@ $('#pagina').click(function () {
     }
 });
 
-
+$('.delete').onsubmit(function () {
+    
+});
 
 
 

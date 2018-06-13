@@ -90,6 +90,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 's';
        /* $rows = (new \yii\db\Query())
             ->select(['autor', 'comentario'])
             ->from('comentario')
