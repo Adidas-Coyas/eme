@@ -20,7 +20,9 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "himiklab/yii2-recaptcha-widget": "*",
         "2amigos/yii2-ckeditor-widget": "^2.1",
-        "fedemotta/yii2-widget-datatables": "*"
+        "fedemotta/yii2-widget-datatables": "*",
+        "yii2mod/yii2-sweet-alert": "*",
+        "kartik-v/yii2-widget-switchinput": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii2mod\alert\Alert;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SearchPost */
@@ -18,7 +19,7 @@ $this->params['title'] = $this->title;
 
 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-        <p><?= Html::a('Novo Post', ['create'], ['class' => 'btn btn-success']) ?></p>
+        <p><?= Html::a('Novo Post', ['create'], ['class' => 'btn btn-primary']) ?></p>
 
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
@@ -26,15 +27,15 @@ $this->params['title'] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
 
-                'id',
+                //'id',
                 'title',
-                'descricao:ntext',
-                'anexo',
+                //'content:ntext',
+                //'anexo',
                 'created_at',
-                //'update_at',
+                'update_at',
                 //'publicar',
                 //'id_user',
-                //'lang',
+                'lang',
 
                 ['class' => 'yii\grid\ActionColumn'],
             ],

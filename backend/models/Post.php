@@ -27,6 +27,8 @@ class Post extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
+
     public static function tableName()
     {
         return 'post';
@@ -38,12 +40,13 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'title', 'descricao', 'anexo', 'id_user'], 'required'],
+            [['title', 'content', 'anexo', 'id_user'], 'required'],
             [['id', 'publicar', 'id_user'], 'integer'],
-            [['descricao', 'lang'], 'string'],
+            [['content', 'lang'], 'string'],
             [['created_at', 'update_at', 'publicado_at'], 'safe'],
-            [['title', 'anexo'], 'string', 'max' => 100],
+            [['title'], 'string', 'max' => 100],
             [['id'], 'unique'],
+            [['anexo'], 'file', 'extensions' => 'doc, docx, jpg, png, odt, gif'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
     }
@@ -57,7 +60,7 @@ class Post extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Titulo',
             'descricao' => 'Descrição',
-            'anexo' => 'Anexo',
+            'anexo' => 'Capa',
             'created_at' => 'Criado em',
             'update_at' => 'Atualizado em',
             'publicar' => 'Publicar',

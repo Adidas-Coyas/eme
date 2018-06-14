@@ -21,7 +21,7 @@ $this->params['title'] = 'Post: '.$model->title;
         <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Quer  mesmo apagar este item?',
+                'confirm' => 'Apagando um post, apagará todos os comentarios relacionados !',
                 'method' => 'post',
             ],
         ]) ?>
@@ -32,7 +32,7 @@ $this->params['title'] = 'Post: '.$model->title;
         'attributes' => [
             'id',
             'title',
-            'descricao:ntext',
+            'content:ntext',
             'anexo',
             'created_at',
             'update_at',
