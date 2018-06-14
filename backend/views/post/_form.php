@@ -11,30 +11,29 @@ use yii\widgets\ActiveForm;
 
 <div class="post-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
+    <!-- $form->field($model, 'id')->textInput() ?-->
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'descricao')->widget(CKEditor::className(), [
+    <?= $form->field($model, 'anexo')->fileInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'content')->widget(CKEditor::className(), [
         'options' => ['rows' => 6],
         'preset' => 'basic'
     ]) ?>
 
-    <!-- $form->field($model, 'descricao')->textarea(['rows' => 6]) ?-->
+    <?php // $form->field($model, 'created_at')->textInput() ?>
 
-    <?= $form->field($model, 'anexo')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'update_at')->textInput() ?>
+    <?php // $form->field($model, 'update_at')->textInput() ?>
 
     <?= $form->field($model, 'publicar')->textInput() ?>
 
-    <?= $form->field($model, 'publicado_at')->textInput() ?>
+    <?php // $form->field($model, 'publicado_at')->textInput() ?>
 
-    <?= $form->field($model, 'id_user')->textInput() ?>
+    <?php // $form->field($model, 'id_user')->textInput() ?>
+
 
     <?= $form->field($model, 'lang')->dropDownList([ 'pt' => 'Português', 'en' => 'Ingles', ], ['prompt' => 'Escolha linguagem...']) ?>
 

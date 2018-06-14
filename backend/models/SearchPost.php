@@ -19,7 +19,7 @@ class SearchPost extends Post
     {
         return [
             [['id', 'publicar', 'id_user'], 'integer'],
-            [['title', 'descricao', 'anexo', 'created_at', 'update_at', 'lang'], 'safe'],
+            [['title', 'content', 'anexo', 'created_at', 'update_at', 'lang'], 'safe'],
         ];
     }
 
@@ -67,7 +67,7 @@ class SearchPost extends Post
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'descricao', $this->descricao])
+            ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'anexo', $this->anexo])
             ->andFilterWhere(['like', 'lang', $this->lang]);
 

@@ -2,12 +2,15 @@
 
 namespace backend\controllers;
 
+use common\models\User;
 use Yii;
 use app\models\Post;
 use app\models\SearchPost;
+use yii\db\Query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -30,10 +33,10 @@ class PostController extends Controller
     }
 
     public function count(){
-        $data['user'] = (new \yii\db\Query())->from('user')->where(['status' => 10])->count();
-        $data['post'] = (new \yii\db\Query())->from('post')->count();
-        $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
-        $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
+        $data['user'] = (new Query())->from('user')->where(['status' => 10])->count();
+        $data['post'] = (new Query())->from('post')->count();
+        $data['comentario'] = (new Query())->from('comentario')->count();
+        $data['parceiro'] = (new Query())->from('parceiros')->count();
 
         return $data;
     }
@@ -77,8 +80,25 @@ class PostController extends Controller
     {
         $model = new Post();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
+        if ($model->load(Yii::$app->request->post())) {
+            $d = (new Query())->select('id')
+                ->from('user')
+                ->where(['username' => Yii::$app->user->identity->username])
+                ->one();
+            $data = date('Y-m-d h:m:s');
+            //get the instance of anexo
+            if($anexo = UploadedFile::getInstance($model, 'anexo')) {
+                $model->anexo = str_replace(" ", "_", substr ($anexo->baseName, 0, 10).'_post-'.$data.'.'.$anexo->extension);
+                $anexo->saveAs('uploud/post/'.$model->anexo);
+            }else {
+                $model->anexo = null;
+            }
+            //get the anexo name
+            $model->id_user = $d['id'];
+            $model->created_at = $data;
+            $model->save();
+
+            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
         return $this->render('create', [
@@ -98,8 +118,27 @@ class PostController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
+        if ($model->load(Yii::$app->request->post())) {
+            //pega nome do anedo directo da bd
+            $old_anexo = (new Query())->select('anexo')->from('post')->where(['id' => $model->id])->one();
+
+            //renomear o ficheiro
+            $data = date('Y-m-d h:m:s');
+
+            //get instance of anexo
+            if(file_exists('uploud/post/'.$old_anexo['anexo']) && $anexo = UploadedFile::getInstance($model, 'anexo')) {
+
+                $model->anexo = str_replace(" ", "_", substr ($anexo->baseName, 0, 10).'_post-'.$data.'.'.$anexo->extension);
+                 unlink('uploud/post/'.$old_anexo['anexo']);
+                //echo "file ".$old_anexo['anexo']." existe";
+                $anexo->saveAs('uploud/post/'.$model->anexo);
+            }else {
+                $model->anexo = $old_anexo['anexo'];
+            }
+
+            $model->update_at = $data;
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
         return $this->render('update', [
@@ -118,7 +157,15 @@ class PostController extends Controller
     public function actionDelete($id)
     {
 
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $old_anexo = (new Query())->select('anexo')->from('post')->where(['id' => $model->id])->one();
+
+        if(file_exists('uploud/post/'.$old_anexo['anexo']) ) {
+            unlink('uploud/post/'.$old_anexo['anexo']);
+            $model->delete();
+        }else {
+            $model->delete();
+        }
 
         return $this->redirect(['index', 'data' => $this->count(),]);
     }

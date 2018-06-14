@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $title
- * @property string $descricao
+ * @property string $content
  * @property string $anexo
  * @property string $created_at
  * @property string $update_at

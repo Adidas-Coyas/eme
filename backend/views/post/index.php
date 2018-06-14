@@ -19,7 +19,7 @@ $this->params['title'] = $this->title;
 
 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-        <p><?= Html::a('Novo Post', ['create'], ['class' => 'btn btn-success']) ?></p>
+        <p><?= Html::a('Novo Post', ['create'], ['class' => 'btn btn-primary']) ?></p>
 
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
@@ -29,7 +29,7 @@ $this->params['title'] = $this->title;
 
                 //'id',
                 'title',
-                //'descricao:ntext',
+                //'content:ntext',
                 //'anexo',
                 'created_at',
                 'update_at',
