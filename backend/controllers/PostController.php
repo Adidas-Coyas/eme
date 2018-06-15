@@ -5,7 +5,9 @@ namespace backend\controllers;
 use common\models\User;
 use Yii;
 use app\models\Post;
+use app\models\Comentario;
 use app\models\SearchPost;
+use yii\data\ActiveDataProvider;
 use yii\db\Query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -48,7 +50,14 @@ class PostController extends Controller
     public function actionIndex()
     {
         $searchModel = new SearchPost();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Post::find(),
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -65,9 +74,57 @@ class PostController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $comentario = new Comentario();
+        $data = date('Y-m-d h:m:s');
+
+        $coment = (new Query())->select('*')->from('comentario')->where(['id_post' => $model->id])->all();
+        $searchModel = new SearchPost();
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Comentario::find(),
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+
+        ]);
+
+
+        if ($comentario->load(Yii::$app->request->post()) ) {
+            $comentario->created_at = $data;
+            echo "criar: ".$comentario->created_at."<br>";
+            $comentario->updated_at = null;
+            echo "update: ".$comentario->updated_at."<br>";
+            $comentario->respondeu = 0;
+            echo "respondeu: ".$comentario->respondeu."<br>";
+            $comentario->id_post = $model->id;
+            echo "post: ".$comentario->id_post."<br>";
+
+
+
+
+            if($comentario->save()){
+                echo "Comentario criado com sucesso<br>";
+            }else {
+                echo "Caregado mas não guardado";
+            }
+           // return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
+
+            //die;
+        }else {
+            echo "os campos nao forom caregados<br>";
+            //die;
+        }
+
+
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'comentario' => $comentario,
             'data' => $this->count(),
+            'coment' => $coment,
         ]);
     }
 

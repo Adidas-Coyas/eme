@@ -33,7 +33,7 @@ class Comentario extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['autor', 'comentario', 'created_at', 'updated_at', 'id_post'], 'required'],
+            [['autor', 'comentario'], 'required'],
             [['comentario'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['respondeu', 'id_post'], 'integer'],

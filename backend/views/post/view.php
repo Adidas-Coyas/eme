@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -41,5 +42,32 @@ $this->params['title'] = 'Post: '.$model->title;
             'lang',
         ],
     ]) ?>
+    <!-- fazer comentario -->
+    <div class="">
+        <?= $this->render('_comment', [
+            'comentario' => $comentario,
+        ]) ?>
+    </div>
+    <!-- Ultimos Comentarios -->
+    <div class="">
+        <p>Ultimos Comentarios</p>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+
+                //'id',
+                'autor',
+                'comentario:ntext',
+                'created_at',
+                'updated_at',
+                //'respondeu',
+                //'id_post',
+
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+    </div>
 
 </div>
