@@ -6,9 +6,7 @@ para: Imedia
 .dixebaxu {
   margin-top: 10%;
 }
-button{
-  background: #000;
-}
+
 body {
   background: #f4f4f4;
 }
@@ -203,4 +201,13 @@ a {
     color: #ffbbbc;
     background-color: #A61f50;
   }
+}
+/* Por * nos campos obrigatorios */
+div.required label.control-label:after {
+  content: " *";
+  color: red;
+}
+
+.obri{
+  color:red;
 }

@@ -27,7 +27,7 @@ AppAsset::register($this);
     <link rel="icon" href="assets/sys/eme.png">
     <?= Html::csrfMetaTags() ?>
     <title>EME Admin - Dashboard</title>
-    <script src="http://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <!--script src="http://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script-->
     <?php $this->head() ?>
 </head>
 <body>
@@ -196,9 +196,9 @@ AppAsset::register($this);
 </div>
 </div>
 
-<script>
+<!--script>
     CKEDITOR.replace( 'descricao' );
-</script>
+</script-->
 
 
 <?php $this->endBody() ?>

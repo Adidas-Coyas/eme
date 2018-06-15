@@ -15,25 +15,25 @@ $this->params['parceiro'] = $data['parceiro'];
 $this->params['title'] = $this->title;
 ?>
 
+<div class="col-md-10 col-md-offset-1">
+    <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+
+    <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+
+    <?= $form->field($model, 'categoria')->dropDownList(['administrador' => 'Administrador', 'gestor' => 'Gestor']) ?>
 
 
-        <div class="col-md-10 col-md-offset-1">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+    <?= $form->field($model, 'email')->input('email') ?>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+    <?= $form->field($model, 'password')->passwordInput() ?>
 
-            <?= $form->field($model, 'categoria')->dropDownList(['administrador' => 'Administrador', 'gestor' => 'Gestor']) ?>
+    <p class="obri">* <small>campos obrigatorios</small></p>
 
-
-            <?= $form->field($model, 'email') ?>
-
-            <?= $form->field($model, 'password')->passwordInput() ?>
-
-            <div class="form-group">
-                <div class="col-md-4 col-md-offset-4">
-                    <?= Html::submitButton('Registrar', ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>
-                </div>
-            </div>
-
-            <?php ActiveForm::end(); ?>
+    <div class="form-group">
+        <div class="col-md-4 col-md-offset-4">
+            <?= Html::submitButton('Registrar', ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>
         </div>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+</div>
