@@ -104,29 +104,44 @@ $this->title = 'My Yii Application';
 
 <div class="lates">
   <div class="container">
-          <div class="row">
-        <h1>TESTEMUNHOS DE CLIENTES</h1>
-         <div class="col-lg-4">
-         <i class="fa fa-quote-right" aria-hidden="true"></i>
-<blockquote>
-  <p>Testemunho1</p>
-  <footer>Ana, Portugal</footer>
-</blockquote>
+    <div class="row">
+      <h1>TESTEMUNHOS DE CLIENTES</h1>
+      <div class="col-md-4">
+        <i class="fa fa-quote-right" aria-hidden="true"></i>
+        <blockquote>
+          <p>Testimunho 1</p>
+          <article>
+            sfhsaçkfhskjfsçfkjashfçjfçfjfajhfjhf<br>
+            duashdlkashlkfjgflaskgfalksfgalskfjalfjaljkfa<br>
+            ggljdlfgjdlgidfgdf.
+          </article>
+          <footer>Ana - lisboa, Portugal</footer>
+        </blockquote>
       </div>
-      <div class="col-lg-4">
-        <i class="material-icons gold-icons" style="font-size:50px;">format_quote</i>
-<blockquote>
-  <p>Testemunho2</p>
-  <footer>Moreno, Brasil</footer>
-</blockquote>
+      <div class="col-md-4">
+        <i class="fa fa-quote-right" aria-hidden="true"></i>
+        <blockquote>
+          <p>Testimunho 2</p>
+          <article>
+            sfhsaçkfhskjfsçfkjashfçjfçfjfajhfjhf<br>
+            duashdlkashlkfjgflaskgfalksfgalskfjalfjaljkfa<br>
+            ggljdlfgjdlgidfgdf.
+          </article>
+          <footer>Teta - praia, Cabo Verde</footer>
+        </blockquote>
       </div>
-      <div class="col-lg-4">
-      <i class="material-icons gold-icons" style="font-size:50px;">format_quote</i>
-<blockquote>
-  <p>Testemunho3</p>
-  <footer>Julio, Paises-Baixos</footer>
-</blockquote>
-      </div>
+      <div class="col-md-4">
+        <i class="fa fa-quote-right" aria-hidden="true"></i>
+        <blockquote>
+          <p>Testimunho 3</p>
+          <article>
+            sfhsaçkfhskjfsçfkjashfçjfçfjfajhfjhf<br>
+            duashdlkashlkfjgflaskgfalksfgalskfjalfjaljkfa<br>
+            ggljdlfgjdlgidfgdf.
+          </article>
+          <footer>Arminda - mindelo, Cabo Verde</footer>
+        </blockquote>
       </div>
     </div>
+  </div>
 </div>

@@ -1,11 +1,84 @@
+
+
+@font-face {
+font-family: 'HandelGotDBol';
+font-style: normal;
+font-weight: normal;
+src: local('HandelGotDBol'), url('../fonts/H032016D.woff') format('woff');
+}
+.nav-tabs > li > a {
+	font-family:'HandelGotDBol';
+  font-weight:normal;
+  font-size:
+}
+
 .logo {
     width: 180px;
     height: 50px;
 }
+@media only screen (max-width: 480px) {
+  .logo {
+      width: 90px;
+      height: 40px;
+  }
+  .nav-tabs > li > a {
+    padding:15px 15px;
+    border-bottom: 1px solid #f3f3f3;
+  }
 
+  .nav-tabs > li > a:hover {
+    border-color: #f3f3f3;
+  }
+
+}
 @media (max-width: 768px) {
     .logo {
         width: 90px;
         height: 40px;
     }
-  }
+    #main-slider .carousel .carousel-content {
+  	  margin-top: 40px;
+  		text-align: center;
+  	}
+
+  	#main-slider .carousel .slide-margin{
+  	  margin-top: 40px;
+  	}
+
+  	#main-slider .carousel p {
+  	  color: #fff;
+  	  font-size:18px;
+  		line-height: 24px;
+  	}
+}
+
+@media (max-width: 768px) {
+	.navbar-brand {
+		padding-top: 6px;
+	}
+	.navbar-brand h1 {
+		margin-top: 0;
+	}
+
+	.nav-tabs > li {
+		float: none;
+		display: block;
+	}
+
+	.menu {
+		position: absolute;
+		left: 0;
+		right: 0;
+		background: #fff;
+		height: auto;
+	}
+
+	.nav-tabs > li > a {
+		padding:15px 15px;
+		border-bottom: 1px solid #f3f3f3;
+	}
+
+	.nav-tabs > li > a:hover {
+		border-color: #f3f3f3;
+	}
+}
