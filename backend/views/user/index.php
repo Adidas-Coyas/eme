@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 
@@ -30,38 +31,14 @@ $this->params['title'] = $this->title;
                 //'password_reset_token',
                 'email:email',
                 'categoria',
-                'status',
+                //'status',
+                [
+                   'label' => 'status',
+                   'value' => 10 ? "ativo" : "disativado",
+                 ],
                 //'created_at',
                 //'updated_at',
 
                 ['class' => 'yii\grid\ActionColumn'],
             ],
-            'clientOptions' => [
-                //"lengthMenu"=> [[20,-1], [20,Yii::t('app',"Todos")]],
-                "info"=>false,
-                "responsive"=>true,
-                "dom"=> 'lfTrtip',
-                "tableTools"=>[
-                    "aButtons"=> [
-                        [
-                            "sExtends"=> "copy",
-                            "sButtonText"=> Yii::t('app',"Copy to clipboard")
-                        ],[
-                            "sExtends"=> "csv",
-                            "sButtonText"=> Yii::t('app',"Save to CSV")
-                        ],[
-                            "sExtends"=> "xls",
-                            "oSelectorOpts"=> ["page"=> 'current']
-                        ],[
-                            "sExtends"=> "pdf",
-                            "sButtonText"=> Yii::t('app',"Save to PDF")
-                        ],[
-                            "sExtends"=> "print",
-                            "sButtonText"=> Yii::t('app',"Print")
-                        ],
-                    ]
-                ]
-            ],
         ]);?>
-
-

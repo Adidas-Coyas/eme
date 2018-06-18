@@ -1,9 +1,14 @@
+$(document).scroll(function(){
+	var $nav = $('.navbar-default');
+	$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+	});
+
 jQuery(function($) {
 
 	//#main-slider
 	$(function(){
 		$('#main-slider.carousel').carousel({
-			interval: 8000
+			interval: 800
 		});
 	});
 	
@@ -54,7 +59,7 @@ jQuery(function($) {
     function initialize_google_map() {
         var myLatlng = new google.maps.LatLng(get_latitude, get_longitude);
         var mapOptions = {
-            zoom: 18,
+            zoom: 14,
             scrollwheel: false,
             center: myLatlng
         };

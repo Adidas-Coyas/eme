@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 
@@ -56,26 +57,27 @@ $this->params['title'] = $this->title;
         <h3 class="panel-title">Ultimos Comentarios</h3>
     </div>
     <div class="panel-body">
-        <table class="table table-striped table-hover">
 
-            <?php
-            //print_r($comment);
-               foreach ($comment as $comments){
-                    //echo $comments['autor'];
-                    echo "<tr>";
-                    //echo "<td><i class=\"fas fa-user-tie fa-3x well\"  ></i></td>";
-                    echo "<td><i class=\"fas fa-user-tie fa-2x well\"></i></td>";
-                    echo "<td>".$comments['autor']."<br>".substr($comments['comentario'], 0, 150)."...</td>";
-                    echo "<td> <button>Detalhes</button> </td>";
-                    echo "</tr>";
-                }
-            ?>
-            <!--
-            <tr>
-                <td> <img src="assets/user/protester.jpg" alt="" width="50" height="50"> Krugral kricrolagran</td>
-                <td>comentarios...</td>
-            </tr>-->
-        </table>
+
+          <?php
+            foreach ($comment as $comments) {
+            echo '
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="col-md-2">
+                    <i class="fas fa-user-tie fa-3x well"  ></i>
+                  </div>
+                  <div class="col-md-8">'.
+               $comments['autor'].'<br>'.substr($comments['comentario'], 0, 70)
+               .'</div>
+               <div class="col-md-2">
+                 <button>Detalhes</button>
+               </div>
+             </div>
+           </div>';
+            }
+           ?>
+
     </div>
     <div class="panel-footer btn btn-block bb"><?= Html::a('Ver Todos', ['comentario/index'], ['class' => '']) ?></div>
 </div>
@@ -87,26 +89,25 @@ $this->params['title'] = $this->title;
     </div>
     <div class="panel-body">
         <table class="table table-striped table-hover">
-
-            <?php
-            //print_r($comment);
-            foreach ($comment as $comments){
-                //echo $comments['autor'];
-                echo "<tr>";
-                //echo "<td><i class=\"fas fa-user-tie fa-3x well\"  ></i></td>";
-                echo "<td><i class=\"fas fa-user-tie fa-2x well\"></i></td>";
-                echo "<td>".$comments['autor']."<br>".substr($comments['comentario'], 0, 150)."...</td>";
-                echo "<td> <button>Detalhes</button> </td>";
-                echo "</tr>";
+          <?php
+            foreach ($post as $posts) {
+            echo '
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="col-md-2">
+                    <i class="fas fa-user-tie fa-3x well"  ></i>
+                  </div>
+                  <div class="col-md-8">'.
+                  $posts['title'].'<br>'.substr($posts['content'], 0, 70)
+               .'</div>
+               <div class="col-md-2">
+                 <button>Detalhes</button>
+               </div>
+             </div>
+           </div>';
             }
-            ?>
-            <!--
-            <tr>
-                <td> <img src="assets/user/protester.jpg" alt="" width="50" height="50"> Krugral kricrolagran</td>
-                <td>comentarios...</td>
-            </tr>-->
+           ?>
         </table>
     </div>
-    <div class="panel-footer btn btn-block bb"><?= Html::a('Ver Todos', [''], ['class' => 'post/index']) ?></div>
+    <div class="panel-footer btn btn-block bb"><?= Html::a('Ver Todos', ['post/index'], ['class' => '']) ?></div>
 </div>
-

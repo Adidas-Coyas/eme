@@ -39,6 +39,7 @@ class PostController extends Controller
         $data['post'] = (new Query())->from('post')->count();
         $data['comentario'] = (new Query())->from('comentario')->count();
         $data['parceiro'] = (new Query())->from('parceiros')->count();
+        $data['galeria'] = (new \yii\db\Query())->from('galeria')->count();
 
         return $data;
     }
@@ -77,8 +78,13 @@ class PostController extends Controller
         $model = $this->findModel($id);
         $comentario = new Comentario();
         $data = date('Y-m-d h:m:s');
+        echo "id".$model->id;
+        //die;
 
-        $coment = (new Query())->select('*')->from('comentario')->where(['id_post' => $model->id])->all();
+        $coment = (new Query())->select(['autor', 'comentario'])->from('comentario')->where(['id_post' => $model->id])->all();
+
+        print_r($coment);
+       // die;
         $searchModel = new SearchPost();
         //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider = new ActiveDataProvider([
@@ -115,6 +121,8 @@ class PostController extends Controller
             echo "os campos nao forom caregados<br>";
             //die;
         }
+
+
 
 
 

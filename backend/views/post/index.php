@@ -14,6 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 
@@ -31,15 +32,20 @@ $this->params['title'] = $this->title;
                 'title',
                 //'content:ntext',
                 //'anexo',
-                'created_at',
+               // 'created_at',
+                [
+                    'attribute' => 'created_at',
+                    'format' => ['date', 'php:d-m-Y']
+                ],
                 'update_at',
                 //'publicar',
                 //'id_user',
+                [
+                        'attribute' => 'id_user',
+                        'value' => 'user.username'
+                ],
                 'lang',
 
                 ['class' => 'yii\grid\ActionColumn'],
             ],
         ]); ?>
-
-
-

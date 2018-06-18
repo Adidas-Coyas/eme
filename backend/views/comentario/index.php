@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 
@@ -28,15 +29,19 @@ $this->params['title'] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
 
-                'id',
+                //'id',
                 'autor',
-                'comentario:ntext',
+                //'comentario:ntext',
+                //'id_post',
+                [
+                        'attribute' => 'id_post',
+                        'value' => 'post.title'
+                ],
                 'created_at',
                 'updated_at',
                 //'respondeu',
-                //'id_post',
+
 
                 ['class' => 'yii\grid\ActionColumn'],
             ],
         ]); ?>
-

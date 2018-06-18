@@ -112,7 +112,7 @@ AppAsset::register($this);
 
                     <?= Html::a('<i class="fas fa-user"></i> Usuarios <span class="badge">'. $this->params['user'].'</span>', ['user/index'], ['class' => 'list-group-item', 'id' => 'users']) ?>
 
-                    <?= Html::a('<i class="fas fa-images"></i> Galeria <span class="badge">'. $this->params['user'].'</span>', ['galeria/index'], ['class' => 'list-group-item', 'id' => 'gale']) ?>
+                    <?= Html::a('<i class="fas fa-images"></i> Galeria <span class="badge">'. $this->params['galeria'].'</span>', ['galeria/index'], ['class' => 'list-group-item', 'id' => 'gale']) ?>
                 </div>
                 <div class="well">
                     <h4>Posts Visitados</h4>

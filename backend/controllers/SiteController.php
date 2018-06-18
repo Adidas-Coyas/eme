@@ -3,6 +3,7 @@ namespace backend\controllers;
 
 // esses aqui vieram do frontend
 use app\models\Comentario;
+use app\models\Post;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -80,6 +81,7 @@ class SiteController extends Controller
         $data['post'] = (new \yii\db\Query())->from('post')->count();
         $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
         $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
+        $data['galeria'] = (new \yii\db\Query())->from('galeria')->count();
 
         return $data;
     }
@@ -97,6 +99,7 @@ class SiteController extends Controller
             ->limit(3);*/
 
         $rows = Comentario::find()->select(['autor', 'comentario'])->all();
+        $post = Post::find()->select(['title', 'content'])->all();
 
         //$dados = $rows->autor;
         //print_r($rows);
@@ -104,6 +107,7 @@ class SiteController extends Controller
         return $this->render('index', [
             'data' => $this->count(),
             'comment' => $rows,
+            'post' => $post,
         ]);
     }
 

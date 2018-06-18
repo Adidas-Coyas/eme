@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = 'Criar '.$this->title;
 ?>
 
@@ -20,4 +21,3 @@ $this->params['title'] = 'Criar '.$this->title;
         'model' => $model,
     ]) ?>
 </div>
-

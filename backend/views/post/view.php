@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = 'Post: '.$model->title;
 ?>
 <div class="post-view">
@@ -51,23 +52,28 @@ $this->params['title'] = 'Post: '.$model->title;
     <!-- Ultimos Comentarios -->
     <div class="">
         <p>Ultimos Comentarios</p>
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
 
-                //'id',
-                'autor',
-                'comentario:ntext',
-                'created_at',
-                'updated_at',
-                //'respondeu',
-                //'id_post',
 
-                ['class' => 'yii\grid\ActionColumn'],
-            ],
-        ]); ?>
+                <?php
+                    foreach ($coment as $dados) {
+                        echo "<div class=\"row\">";
+                        echo "
+                            <div class=\"col-md-2\">
+                                <i class='fas fa-user fa-2x well'></i>
+                            </div>
+                        ";
+                            echo "<div class=\"col-md-10\">";
+
+                                    echo $dados['autor']."<br>";
+                                    echo $dados['comentario']."<br>";
+
+                           echo "</div>";
+                           echo "<span><i class=\"fa fa-trash-o\"></i></span>";
+                        echo "</div>";
+                    }
+                ?>
+
+
     </div>
 
 </div>

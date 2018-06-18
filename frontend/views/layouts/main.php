@@ -16,13 +16,13 @@
   <?= Html::csrfMetaTags() ?>
   <title>EME Marketing</title>
 
-  <!-- Bootstrap 
+  <!-- Bootstrap
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/animate.css">
   <link href="css/prettyPhoto.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet" />
-  <!-- yii stiles here -->
+  < yii stiles here -->
   <?php $this->head() ?>
 </head>
 
@@ -62,49 +62,39 @@
       </div>
     </nav>
   </header>
+
 <!-- inicio do conteúdo -->
     <?= $content ?>
 <!-- fim dos contúdos -->
-  <footer>
-    <div class="footer">
-      <div class="container">
-        <div class="social-icon">
-          <div class="col-md-4">
-            <ul class="social-network">
-              <li><a href="#" class="fb tool-tip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#" class="twitter tool-tip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#" class="gplus tool-tip" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
-              <!--li><a href="#" class="linkedin tool-tip" title="Linkedin"><i class="fa fa-linkedin"></i></a></li-->
-              <!--li><a href="#" class="ytube tool-tip" title="You Tube"><i class="fa fa-youtube-play"></i></a></li-->
-            </ul>
-          </div>
-        </div>
-
-        <div class="col-md-4 pull-right">
-          <div class="copyright">
-            &copy; EME MARKETING. Todos os direitos reservados.
-            <div class="credits">
-
-                <div class="pull-left marg">
-                    <?= Html::a(''.Html::img('images/sys/pt.svg', ['class' => 'flag', 'alt' => 'Traduzir para portugues']).'', '')?>
-                    <?= Html::a(''.Html::img('images/sys/gb.svg', ['class' => 'flag', 'alt' => 'Traduzir para ingles']).'', '')?>
-                </div>
-
-              <a href="#">Feito</a> por <?= Html::a('Imedia', 'http://innovatmedia.com/', ['target' => 'blank']) ?>
-            </div>
-          </div>
+<footer>
+  <div class="footer">
+    <div class="container">
+      <div class="social-icon">
+        <div class="col-md-4">
+          <ul class="social-network">
+            <li><a href="https://www.facebook.com/EME-Marketing-Eventos-1797574883603318/" class="fb tool-tip" title="Facebook"><i class="fa fa-facebook" target="_blank"></i></a></li>
+            <li><a href="https://www.linkedin.com/company/eme---marketing-&-eventos" class="linkedin tool-tip" title="Linkedin"><i class="fa fa-linkedin" target="_blank"></i></a></li>
+            <li><a href="https://www.youtube.com/channel/UCOqN-_HpqnwT2CWseKCR-xw" class="ytube tool-tip" title="You Tube" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
+          </ul>
         </div>
       </div>
 
-      <div class="pull-right">
-        <a href="#home" class="scrollup"><i class="fa fa-angle-up fa-3x"></i></a>
+      <div class="col-md-4 col-md-offset-4">
+        <div class="copyright">
+          &copy; EME - Marketing e Eventos, Lda
+        </div>
       </div>
     </div>
-  </footer>
+
+    <div class="pull-right">
+      <a href="#home" class="scrollup"><i class="fa fa-angle-up fa-3x"></i></a>
+    </div>
+  </div>
+</footer>
 
 
 <!--script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0JvqTAm3aIKPNMhsklm6P6ZFUbBdzcO0&callback=initMap" type="text/javascript"></script>
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins)
   <script src="js/jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed
   <script src="js/bootstrap.min.js"></script>
