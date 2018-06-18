@@ -83,7 +83,7 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="copyright">
           &copy; EME - Marketing e Eventos, Lda
-          <p><?= Html::a("Imedia", 'www.innovatmedia.com') ?></p>
+          <p><a>Feito por</a> <?= Html::a('Imedia', 'http://innovatmedia.com/', ['target' => 'blank']) ?></p>
         </div>
       </div>
     </div>
