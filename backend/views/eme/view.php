@@ -32,9 +32,9 @@ $this->params['title'] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'sobre:ntext',
-            'missao:ntext',
+          //  'id',
+            'sobre:html',
+            'missao:html',
             'lang',
         ],
     ]) ?>

@@ -28,7 +28,13 @@ use yii\widgets\ActiveForm;
 
     <?php // $form->field($model, 'update_at')->textInput() ?>
 
-    <?= $form->field($model, 'publicar')->textInput() ?>
+    <?php // $form->field($model, 'publicar')->textInput() ?>
+
+    <?= $form->field($model, 'publicar')->radioList([
+          1 => 'Publicar',
+          0 => 'Arquivar'
+      ]);
+      ?>
 
     <?php // $form->field($model, 'publicado_at')->textInput() ?>
 

@@ -34,7 +34,7 @@ $this->params['title'] = $this->title;
                 //'comentario:ntext',
                 //'id_post',
                 [
-                        'attribute' => 'id_post',
+                        'attribute' => 'Post',
                         'value' => 'post.title'
                 ],
                 'created_at',

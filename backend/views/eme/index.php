@@ -19,7 +19,7 @@ $this->params['title'] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Sobre Nos', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Sobre Nos', ['create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,9 +28,9 @@ $this->params['title'] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'sobre:ntext',
-            'missao:ntext',
+            //'id',
+            'sobre:html',
+            'missao:html',
             'lang',
 
             ['class' => 'yii\grid\ActionColumn'],

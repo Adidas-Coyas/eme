@@ -31,11 +31,13 @@ class Galeria extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'title', 'conteudo', 'descricao', 'id_user'], 'required'],
+            [['title', 'conteudo', 'descricao', 'created_at', 'id_user'], 'required'],
             [['id', 'id_user'], 'integer'],
             [['descricao'], 'string'],
+            [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 50],
-            [['conteudo'], 'string', 'max' => 150],
+            //[['conteudo'], 'string', 'max' => 150], 
+            [['conteudo'], 'file', 'extensions' => 'jpg, png, gif'],
             [['id'], 'unique'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
@@ -48,10 +50,10 @@ class Galeria extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'conteudo' => 'Conteudo',
+            'title' => 'Titulo',
+            'conteudo' => 'Imagem',
             'descricao' => 'Descricao',
-            'id_user' => 'Id User',
+            'id_user' => 'Usuario',
         ];
     }
 

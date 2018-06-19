@@ -3,6 +3,7 @@
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\db\Query;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
@@ -32,14 +33,44 @@ $this->params['title'] = 'Post: '.$model->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'title',
-            'content:ntext',
-            'anexo',
+          //  'anexo',
+            [
+                    'label' => 'capa',
+                    'value' => function($data){
+                        return Html::img('uploud/post/'.$data->anexo,
+                                ['width' => '200px', 'heigth' => '120px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
             'created_at',
             'update_at',
-            'publicar',
-            'id_user',
+            'content:html',
+            [
+              'attribute' =>'Estado',
+              'value' => function($data){
+                if($data->publicar == 1){
+                  return "Publicado";
+                }else {
+                  return "Arquivado";
+                }
+              }
+            ],
+            //'id_user',
+            /*[
+                    'attribute' => 'id_user',
+                    'value' => function ($data,$user )
+                    {
+
+                      //if(){
+                        return $user;
+                      //}else {
+                        //return null;
+                    //  }
+                    }
+            ],*/
             'lang',
         ],
     ]) ?>
@@ -51,29 +82,25 @@ $this->params['title'] = 'Post: '.$model->title;
     </div>
     <!-- Ultimos Comentarios -->
     <div class="">
-        <p>Ultimos Comentarios</p>
+        <p><h4>Ultimos Comentarios</h4></p>
+        <?php
+            foreach ($coment as $dados) {
+                echo "<div class=\"row\">";
+                echo "
+                    <div class=\"col-md-2\">
+                        <i class='fas fa-user fa-2x well'></i>
+                    </div>
+                ";
+                    echo "<div class=\"col-md-8\">";
 
+                            echo "<p class=\"autor\">".$dados['autor']."<p>";
+                            echo "<p class=\"comment\">".$dados['comentario']."<br>";
 
-                <?php
-                    foreach ($coment as $dados) {
-                        echo "<div class=\"row\">";
-                        echo "
-                            <div class=\"col-md-2\">
-                                <i class='fas fa-user fa-2x well'></i>
-                            </div>
-                        ";
-                            echo "<div class=\"col-md-10\">";
-
-                                    echo $dados['autor']."<br>";
-                                    echo $dados['comentario']."<br>";
-
-                           echo "</div>";
-                           echo "<span><i class=\"fa fa-trash-o\"></i></span>";
-                        echo "</div>";
-                    }
-                ?>
-
-
+                   echo "</div>";
+                   echo "<div class=\"col-md-2\"><div class=\"well \"></div></div>";
+                echo "</div>";
+            }
+        ?>
     </div>
 
 </div>

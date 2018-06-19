@@ -12,6 +12,8 @@ use Yii;
  * @property string $descricao
  * @property string $foto
  * @property string $lang
+ * @property string $created_at
+ * @property string $updated_at
  */
 class Portfolio extends \yii\db\ActiveRecord
 {
@@ -29,10 +31,11 @@ class Portfolio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'descricao', 'foto'], 'required'],
+            [['nome', 'descricao', 'foto', 'created_at'], 'required'],
             [['descricao', 'lang'], 'string'],
+            [['created_at', 'updated_at'], 'safe'],
             [['nome'], 'string', 'max' => 50],
-            [['foto'], 'string', 'max' => 100],
+            [['foto'], 'file', 'extensions' => 'png, jpg, gif'],
         ];
     }
 
@@ -46,7 +49,9 @@ class Portfolio extends \yii\db\ActiveRecord
             'nome' => 'Nome',
             'descricao' => 'Descricao',
             'foto' => 'Foto',
-            'lang' => 'Lang',
+            'lang' => 'Lingua',
+            'created_at' => 'Criado em',
+            'updated_at' => 'Atualizado em',
         ];
     }
 }

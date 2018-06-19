@@ -33,9 +33,19 @@ $this->params['title'] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'conteudo',
-            'descricao:ntext',
-            'id_user',
+            //'conteudo',
+            [
+                    'label' => 'Capa',
+                    'value' => function($data){
+                        return Html::img('uploud/galeria/'.$data->conteudo,
+                                ['width' => '250px', 'heigth' => '200px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
+            'descricao:html',
+            //'id_user',
+
         ],
     ]) ?>
 

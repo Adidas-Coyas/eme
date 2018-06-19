@@ -31,11 +31,20 @@ $this->params['title'] = $model->nome;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'nome',
-            'foto',
-            'sobre_pt:ntext',
-            'sobre_en:ntext',
+          //  'foto',
+            [
+                    'label' => 'Foto',
+                    'value' => function($data){
+                        return Html::img('uploud/equipa/'.$data->foto,
+                                ['width' => '250px', 'heigth' => '200px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
+            'sobre_pt:html',
+            'sobre_en:html',
         ],
     ]) ?>
 

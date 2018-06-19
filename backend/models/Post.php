@@ -46,7 +46,7 @@ class Post extends \yii\db\ActiveRecord
             [['created_at', 'update_at', 'publicado_at'], 'safe'],
             [['title'], 'string', 'max' => 100],
             [['id'], 'unique'],
-            [['anexo'], 'file', 'extensions' => 'doc, docx, jpg, png, odt, gif'],
+            [['anexo'], 'file', 'extensions' => 'jpg, png, gif'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
     }

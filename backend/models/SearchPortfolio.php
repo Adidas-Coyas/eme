@@ -19,7 +19,7 @@ class SearchPortfolio extends Portfolio
     {
         return [
             [['id'], 'integer'],
-            [['nome', 'descricao', 'foto', 'lang'], 'safe'],
+            [['nome', 'descricao', 'foto', 'lang', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -60,6 +60,8 @@ class SearchPortfolio extends Portfolio
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome])

@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class ProjetosController extends Controller
 {
     /**
-     * {@inheritdoc}
+     * {@inheritdoc} 
      */
     public function behaviors()
     {

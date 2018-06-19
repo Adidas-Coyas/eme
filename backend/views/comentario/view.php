@@ -32,10 +32,14 @@ $this->params['title'] = 'Autor '.$this->title;
             'attributes' => [
                 'id',
                 'autor',
-                'comentario:ntext',
+                'comentario:html',
                 'created_at',
                 'updated_at',
                 'respondeu',
-                'id_post',
+              //  'id_post',
+                [
+                  'attribute' => 'Post',
+                  'value' => 'post.title'
+                ],
             ],
         ]) ?>

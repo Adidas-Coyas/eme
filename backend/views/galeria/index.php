@@ -29,11 +29,20 @@ $this->params['title'] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
+            //'conteudo',
+            [
+                    'label' => 'Conteudo',
+                    'value' => function($data, $key, $index, $column){
+                        return Html::img('uploud/galeria/'.$data->conteudo,
+                                ['width' => '80px', 'heigth' => '80px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
             'title',
-            'conteudo',
-            'descricao:ntext',
-            'id_user',
+            'descricao:html',
+            //'id_user',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

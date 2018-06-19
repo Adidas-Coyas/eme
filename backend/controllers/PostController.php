@@ -35,12 +35,12 @@ class PostController extends Controller
     }
 
     public function count(){
-        $data['user'] = (new Query())->from('user')->where(['status' => 10])->count();
+        $data['user'] = (new Query())->from('user')->count();
         $data['post'] = (new Query())->from('post')->count();
         $data['comentario'] = (new Query())->from('comentario')->count();
         $data['parceiro'] = (new Query())->from('parceiros')->count();
         $data['galeria'] = (new \yii\db\Query())->from('galeria')->count();
-
+        
         return $data;
     }
 
@@ -50,13 +50,18 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
+      //$user = (new Query())->select('id')->from('user')->where(['username' => Yii::$app->user->identity->username])->one();
+
         $searchModel = new SearchPost();
         //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider = new ActiveDataProvider([
-            'query' => Post::find(),
+            'query' => Post::find(),//->where(['id_user' => $user['id']]),
             'pagination' => [
                 'pageSize' => 5,
             ],
+            'sort' => [
+              'defaultOrder' => ['created_at' => SORT_DESC]
+            ]
 
         ]);
 
@@ -78,61 +83,39 @@ class PostController extends Controller
         $model = $this->findModel($id);
         $comentario = new Comentario();
         $data = date('Y-m-d h:m:s');
-        echo "id".$model->id;
-        //die;
+      //  echo "id".$model->id;
+      //  die;
 
         $coment = (new Query())->select(['autor', 'comentario'])->from('comentario')->where(['id_post' => $model->id])->all();
 
-        print_r($coment);
-       // die;
-        $searchModel = new SearchPost();
-        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider = new ActiveDataProvider([
-            'query' => Comentario::find(),
-            'pagination' => [
-                'pageSize' => 5,
-            ],
-
-        ]);
-
-
         if ($comentario->load(Yii::$app->request->post()) ) {
             $comentario->created_at = $data;
-            echo "criar: ".$comentario->created_at."<br>";
+            //echo "criar: ".$comentario->created_at."<br>";
             $comentario->updated_at = null;
-            echo "update: ".$comentario->updated_at."<br>";
+            //echo "update: ".$comentario->updated_at."<br>";
             $comentario->respondeu = 0;
-            echo "respondeu: ".$comentario->respondeu."<br>";
+            //echo "respondeu: ".$comentario->respondeu."<br>";
             $comentario->id_post = $model->id;
-            echo "post: ".$comentario->id_post."<br>";
-
-
-
+            //echo "post: ".$comentario->id_post."<br>";
 
             if($comentario->save()){
-                echo "Comentario criado com sucesso<br>";
+                return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
             }else {
                 echo "Caregado mas não guardado";
             }
-           // return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
 
-            //die;
         }else {
-            echo "os campos nao forom caregados<br>";
+          //  echo "os campos nao forom caregados<br>";
             //die;
         }
-
-
-
-
+        $user2 = (new Query())->select('username')->from('user')->where(['username' => Yii::$app->user->identity->username])->one();
 
         return $this->render('view', [
             'model' => $model,
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
             'comentario' => $comentario,
             'data' => $this->count(),
             'coment' => $coment,
+            'username' => $user2,
         ]);
     }
 
@@ -146,6 +129,7 @@ class PostController extends Controller
         $model = new Post();
 
         if ($model->load(Yii::$app->request->post())) {
+
             $d = (new Query())->select('id')
                 ->from('user')
                 ->where(['username' => Yii::$app->user->identity->username])
@@ -221,7 +205,6 @@ class PostController extends Controller
      */
     public function actionDelete($id)
     {
-
         $model = $this->findModel($id);
         $old_anexo = (new Query())->select('anexo')->from('post')->where(['id' => $model->id])->one();
 

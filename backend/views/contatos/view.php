@@ -36,7 +36,7 @@ $this->params['title'] = $this->title;
             'telefone',
             'email:email',
             'fax',
-            'localizacao:ntext',
+            'localizacao:html',
             'descricao_pt',
             'lang',
         ],

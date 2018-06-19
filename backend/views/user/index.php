@@ -34,7 +34,14 @@ $this->params['title'] = $this->title;
                 //'status',
                 [
                    'label' => 'status',
-                   'value' => 10 ? "ativo" : "disativado",
+                   'value' => function($data, $key, $index, $column)
+                   {
+                     if($data->status == 10){
+                        return "Activo";
+                     }else {
+                        return "Inactivo";
+                     }
+                   }
                  ],
                 //'created_at',
                 //'updated_at',

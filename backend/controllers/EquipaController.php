@@ -8,6 +8,9 @@ use app\models\SearchEquipa;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+use yii\db\Query;
+use yii\web\UploadedFile;
 
 /**
  * EquipaController implements the CRUD actions for Equipa model.
@@ -46,7 +49,17 @@ class EquipaController extends Controller
     public function actionIndex()
     {
         $searchModel = new SearchEquipa();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Equipa::find(),//->where(['id_user' => $user['id']]),
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+            'sort' => [
+              'defaultOrder' => ['id' => SORT_DESC]
+            ]
+
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -78,7 +91,16 @@ class EquipaController extends Controller
     {
         $model = new Equipa();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+          $data2 = date('d-m-Y h:m:s');
+          //get the instance of anexo
+          if($foto = UploadedFile::getInstance($model, 'foto')) {
+            // substituir todos os espacos nos files por _ e concatenar com E"datade hoje"
+              $model->foto = str_replace(" ", "_", substr ($foto->baseName, 0, 10).'_E'.$data2.'.'.$foto->extension);
+              $foto->saveAs('uploud/equipa/'.$model->foto);
+          }
+          $model->save();
             return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
@@ -99,7 +121,25 @@ class EquipaController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+          $old_foto = (new Query())->select('foto')->from('equipa')->where(['id' => $model->id])->one();
+
+          //renomear o ficheiro
+          $data = date('d-m-Y h:m:s');
+
+          //get instance of foto
+          if(file_exists('uploud/equipa/'.$old_foto['foto']) && $foto = UploadedFile::getInstance($model, 'foto')) {
+
+              $model->foto = str_replace(" ", "_", substr ($foto->baseName, 0, 10).'_E'.$data.'.'.$foto->extension);
+               unlink('uploud/equipa/'.$old_foto['foto']);
+              //echo "file ".$old_foto['foto']." existe";
+              $foto->saveAs('uploud/equipa/'.$model->foto);
+          }else {
+              $model->foto = $old_foto['foto'];
+          }
+
+
+          $model->save();
             return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
@@ -118,7 +158,15 @@ class EquipaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+      $model = $this->findModel($id);
+      $old_foto = (new Query())->select('foto')->from('equipa')->where(['id' => $model->id])->one();
+
+      if(file_exists('uploud/equipa/'.$old_foto['foto']) ) {
+          unlink('uploud/equipa/'.$old_foto['foto']);
+          $model->delete();
+      }else {
+          $model->delete();
+      }
 
         return $this->redirect(['index', 'data' => $this->count()]);
     }

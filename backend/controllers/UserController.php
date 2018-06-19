@@ -7,6 +7,7 @@ use app\models\User;
 use app\models\SearchUser;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use frontend\models\SignupForm;
 
@@ -47,7 +48,17 @@ class UserController extends Controller
     public function actionIndex()
     {
         $searchModel = new SearchUser();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+      //  $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+      $dataProvider = new ActiveDataProvider([
+          'query' => User::find(),//->where(['id_user' => $user['id']]),
+          'pagination' => [
+              'pageSize' => 5,
+          ],
+          'sort' => [
+            'defaultOrder' => ['created_at' => SORT_DESC]
+          ]
+
+      ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

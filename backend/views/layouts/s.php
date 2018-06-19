@@ -35,12 +35,29 @@ AppAsset::register($this);
 
 <nav class="navbar navbar-default">
     <div class="container">
-        <div class="navbar-header">
+      <div class="navbar-header">
+
+          <?php // Html::a('<i class="fas fa-bell"></i><span class="badge">0</span>', [''], ['class' => 'navbar-brand']) ?>
+          <?php // Html::a('<i class="fas fa-comments"></i></i><span class="badge">0</span>', ['comentario/index'], ['class' => 'navbar-brand']) ?>
+
+          <div class="dropdown">
             <?= Html::a('AdminEME', ['site/index'], ['class' => 'navbar-brand']) ?>
-            <?= Html::a('<i class="fas fa-bell"></i><span class="badge">0</span>', [''], ['class' => 'navbar-brand']) ?>
-            <?= Html::a('<i class="fas fa-comments"></i></i><span class="badge">0</span>', [''], ['class' => 'navbar-brand']) ?>
-            <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['site/logout'], ['data' => ['method' => 'post'], 'class' => 'navbar-brand mlog']) ?>
-        </div>
+            <a class="dropdown-toggle navbar-brand" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <i class="fas fa-comments"></i></i><span class="badge">0</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Action</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Another action</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div>
+          <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['site/logout'], ['data' => ['method' => 'post'], 'class' => 'navbar-brand mlog']) ?>
+      </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li></li>
