@@ -20,6 +20,7 @@ $this->params['title'] = $this->title;
 
     <p>
         <?= Html::a('Sobre Nos', ['create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Ver Contatos', ['contatos/index'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([

@@ -27,7 +27,6 @@ AppAsset::register($this);
     <link rel="icon" href="assets/sys/eme.png">
     <?= Html::csrfMetaTags() ?>
     <title>EME Admin - Dashboard</title>
-    <script src="http://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
     <?php $this->head() ?>
 </head>
 <body>
@@ -84,9 +83,8 @@ AppAsset::register($this);
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a type="button" data-toggle="modal" data-target="#addPost">Post</a></li>
-                        <li><a href="#">Projetos</a></li>
-                        <li><a href="#">Testimunho</a></li>
+                        <li><?= Html::a('Post', ['post/create']) ?></li>
+                        <li><?= Html::a('Testimunho', ['testimunhos/create']) ?></li>
                     </ul>
                 </div>
             </div>
@@ -159,56 +157,10 @@ AppAsset::register($this);
 
 <footer class="footer">
     <p> <span><?= Html::a('Police Privacy', '') ?></span> copyright &copy; EME MARKETING <?= date('Y') ?> <span><?= Html::a('Use Terms', '') ?></span></p>
-    <span>Made by <?= Html::a('Imedia', 'http://innovatmedia.com') ?> </span>
+    <span>Made by <?= Html::a('Imedia', 'http://innovatmedia.com', ['target' => '_Blank']) ?> </span>
 </footer>
 
-<!-- Modals -->
 
-<!-- AddPost Modal -->
-<div class="modal fade" id="addPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <form>
-            <div class="modal-content">
-                <div class="modal-header main-color-bg">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Adicionar Um Post</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Titulo</label>
-                        <input type="text" class="form-control" name="titulo" value="">
-                    </div>
-                    <div class="form-group">
-                        <label>Conteudo</label>
-                        <textarea name="descricao" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Medias</label>
-                        <input type="text" name="media" class="form-control" value="">
-                    </div>
-                    <div class="form-group">
-                        <label>Anexo</label>
-                        <input type="file" name="anexo" value="Anexo">
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="publicar"> Publicar
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left btn-red" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-default btn-verde">limpar</button>
-                    <button type="button" class="btn btn-default btn-verde">Save changes</button>
-                </div>
-        </form>
-    </div>
-</div>
-</div>
-
-<script>
-    CKEDITOR.replace( 'descricao' );
-</script>
 
 
 <?php $this->endBody() ?>

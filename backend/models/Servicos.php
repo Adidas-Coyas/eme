@@ -32,7 +32,7 @@ class Servicos extends \yii\db\ActiveRecord
             [['nome', 'icon'], 'required'],
             [['descricao', 'lang'], 'string'],
             [['nome'], 'string', 'max' => 50],
-            [['icon'], 'string', 'max' => 100],
+            [['icon'], 'file', 'extensions' => 'jpg, jpeg, png, gif'],
         ];
     }
 
@@ -46,7 +46,7 @@ class Servicos extends \yii\db\ActiveRecord
             'nome' => 'Nome',
             'descricao' => 'Descricao',
             'icon' => 'Icon',
-            'lang' => 'Lang',
+            'lang' => 'Lingua',
         ];
     }
 }
