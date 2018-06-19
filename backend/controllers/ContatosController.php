@@ -8,6 +8,7 @@ use app\models\SearchContatos;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Query;
 
 /**
  * ContatosController implements the CRUD actions for Contatos model.
@@ -27,6 +28,16 @@ class ContatosController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function count(){
+        $data['user'] = (new Query())->from('user')->count();
+        $data['post'] = (new Query())->from('post')->count();
+        $data['comentario'] = (new Query())->from('comentario')->count();
+        $data['parceiro'] = (new Query())->from('parceiros')->count();
+        $data['galeria'] = (new \yii\db\Query())->from('galeria')->count();
+
+        return $data;
     }
 
     /**
@@ -113,14 +124,7 @@ class ContatosController extends Controller
         return $this->redirect(['index', 'data' => $this->count()]);
     }
 
-    public function count(){
-        $data['user'] = (new \yii\db\Query())->from('user')->where(['status' => 10])->count();
-        $data['post'] = (new \yii\db\Query())->from('post')->count();
-        $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
-        $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
 
-        return $data;
-    }
 
     /**
      * Finds the Contatos model based on its primary key value.

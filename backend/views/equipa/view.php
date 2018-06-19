@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $model->nome;
 ?>
 <div class="equipa-view">
@@ -30,11 +31,20 @@ $this->params['title'] = $model->nome;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'nome',
-            'foto',
-            'sobre_pt:ntext',
-            'sobre_en:ntext',
+          //  'foto',
+            [
+                    'label' => 'Foto',
+                    'value' => function($data){
+                        return Html::img('uploud/equipa/'.$data->foto,
+                                ['width' => '250px', 'heigth' => '200px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
+            'sobre_pt:html',
+            'sobre_en:html',
         ],
     ]) ?>
 

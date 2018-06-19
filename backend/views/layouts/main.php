@@ -36,9 +36,24 @@ AppAsset::register($this);
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <?= Html::a('AdminEME', ['site/index'], ['class' => 'navbar-brand']) ?>
-            <?= Html::a('<i class="fas fa-bell"></i><span class="badge">0</span>', [''], ['class' => 'navbar-brand']) ?>
-            <?= Html::a('<i class="fas fa-comments"></i></i><span class="badge">0</span>', ['comentario/index'], ['class' => 'navbar-brand']) ?>
+
+            <?php // Html::a('<i class="fas fa-bell"></i><span class="badge">0</span>', [''], ['class' => 'navbar-brand']) ?>
+            <?php // Html::a('<i class="fas fa-comments"></i></i><span class="badge">0</span>', ['comentario/index'], ['class' => 'navbar-brand']) ?>
+
+            <div class="dropdown">
+              <?= Html::a('AdminEME', ['site/index'], ['class' => 'navbar-brand']) ?>
+              <a class="dropdown-toggle navbar-brand" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <i class="fas fa-comments"></i></i><span class="badge">0</span>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </div>
             <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['site/logout'], ['data' => ['method' => 'post'], 'class' => 'navbar-brand mlog']) ?>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -47,8 +62,9 @@ AppAsset::register($this);
                 <li></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><?= Html::a('BemVindo, '.Yii::$app->user->identity->username.'', '') ?></li>
+                <li><?= Html::a('BemVindo, '.Yii::$app->user->identity->username, ['user/view', 'id' =>  1]) ?></li>
                 <li><?= Html::a('Logout', ['site/logout'], ['data' => ['method' => 'post']]) ?></li>
+
 
             </ul>
         </div><!--/.nav-collapse -->
@@ -67,9 +83,8 @@ AppAsset::register($this);
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a type="button" data-toggle="modal" data-target="#addPost">Post</a></li>
-                        <li><a href="#">Projetos</a></li>
-                        <li><a href="#">Testimunho</a></li>
+                        <li><?= Html::a('Post', ['post/create']) ?></li>
+                        <li><?= Html::a('Testimunho', ['testimunhos/create']) ?></li>
                     </ul>
                 </div>
             </div>
@@ -99,7 +114,7 @@ AppAsset::register($this);
                     </a>
                     <span class="dropdown-container">
                         <?= Html::a('<i class="far fa-file-alt" are-hidden="true"></i> Portfolio', ['portfolio/index'], ['class' => 'list-group-item', 'id' => '']) ?>
-                        <?= Html::a('<i class="far fa-file-alt" are-hidden="true"></i> Projectos', ['pprojetos/index'], ['class' => 'list-group-item', 'id' => '']) ?>
+                        <?= Html::a('<i class="far fa-file-alt" are-hidden="true"></i> Projectos', ['projetos/index'], ['class' => 'list-group-item', 'id' => '']) ?>
                         <?= Html::a('<i class="far fa-file-alt"  are-hidden="true"></i> Equipa', ['equipa/index'], ['class' => 'list-group-item', 'id' => '']) ?>
                         <?= Html::a('<i class="far fa-file-alt"  are-hidden="true"></i> Parceiros<span class="badge">'.$this->params['user'].'</span>', ['parceiros/index'], ['class' => 'list-group-item', 'id' => '']) ?>
                         <?= Html::a('<i class="far fa-file-alt"  are-hidden="true"></i> Servicos', ['servicos/index'], ['class' => 'list-group-item', 'id' => '']) ?>
@@ -112,7 +127,7 @@ AppAsset::register($this);
 
                     <?= Html::a('<i class="fas fa-user"></i> Usuarios <span class="badge">'. $this->params['user'].'</span>', ['user/index'], ['class' => 'list-group-item', 'id' => 'users']) ?>
 
-                    <?= Html::a('<i class="fas fa-images"></i> Galeria <span class="badge">'. $this->params['user'].'</span>', ['galeria/index'], ['class' => 'list-group-item', 'id' => 'gale']) ?>
+                    <?= Html::a('<i class="fas fa-images"></i> Galeria <span class="badge">'. $this->params['galeria'].'</span>', ['galeria/index'], ['class' => 'list-group-item', 'id' => 'gale']) ?>
                 </div>
                 <div class="well">
                     <h4>Posts Visitados</h4>
@@ -149,52 +164,8 @@ AppAsset::register($this);
 
 <footer class="footer">
     <p> <span><?= Html::a('Police Privacy', '') ?></span> copyright &copy; EME MARKETING <?= date('Y') ?> <span><?= Html::a('Use Terms', '') ?></span></p>
-    <span>Made by <?= Html::a('Imedia', 'http://innovatmedia.com') ?> </span>
+    <span>feito por <?= Html::a('Imedia', 'http://innovatmedia.com', ['target' => '_Blank']) ?> </span>
 </footer>
-
-<!-- Modals -->
-
-<!-- AddPost Modal -->
-<div class="modal fade" id="addPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <form>
-            <div class="modal-content">
-                <div class="modal-header main-color-bg">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Adicionar Um Post</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Titulo</label>
-                        <input type="text" class="form-control" name="titulo" value="">
-                    </div>
-                    <div class="form-group">
-                        <label>Conteudo</label>
-                        <textarea name="descricao" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Medias</label>
-                        <input type="text" name="media" class="form-control" value="">
-                    </div>
-                    <div class="form-group">
-                        <label>Anexo</label>
-                        <input type="file" name="anexo" value="Anexo">
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="publicar"> Publicar
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left btn-red" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-default btn-verde">limpar</button>
-                    <button type="button" class="btn btn-default btn-verde">Save changes</button>
-                </div>
-        </form>
-    </div>
-</div>
-</div>
 
 <!--script>
     CKEDITOR.replace( 'descricao' );

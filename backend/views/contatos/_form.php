@@ -20,14 +20,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fax')->textInput() ?>
 
-    <?= $form->field($model, 'localizacao')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'localizacao')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'basic'
+    ]) ?>
 
-    <?= $form->field($model, 'descricao_pt')->textInput(['maxlength' => true]) ?>
+    <?php // $form->field($model, 'descricao_pt')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'lang')->dropDownList([ 'pt' => 'Pt', 'en' => 'En', ], ['prompt' => '']) ?>
+    <?php // $form->field($model, 'lang')->dropDownList([ 'pt' => 'Pt', 'en' => 'En', ], ['prompt' => '']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

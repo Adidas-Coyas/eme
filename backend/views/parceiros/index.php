@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 <div class="parceiros-index">
@@ -19,7 +20,7 @@ $this->params['title'] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Adicionar Parceiro', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Adicionar Parceiro', ['create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,11 +29,20 @@ $this->params['title'] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
+            [
+                    'label' => 'Conteudo',
+                    'value' => function($data, $key, $index, $column){
+                        return Html::img('uploud/parceiros/'.$data->logo,
+                                ['width' => '80px', 'heigth' => '80px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
             'nome',
-            'descricao_pt:ntext',
-            'descricao_en:ntext',
-            'logo',
+            'descricao_pt:html',
+            'descricao_en:html',
+          //  'logo',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

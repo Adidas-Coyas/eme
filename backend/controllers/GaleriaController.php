@@ -8,7 +8,10 @@ use app\models\SearchGaleria;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\data\ActiveDataProvider;
+use common\models\User;
+use yii\db\Query;
+use yii\web\UploadedFile;
 /**
  * GaleriaController implements the CRUD actions for Galeria model.
  */
@@ -34,6 +37,7 @@ class GaleriaController extends Controller
         $data['post'] = (new \yii\db\Query())->from('post')->count();
         $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
         $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
+        $data['galeria'] = (new \yii\db\Query())->from('galeria')->count();
 
         return $data;
     }
@@ -45,7 +49,17 @@ class GaleriaController extends Controller
     public function actionIndex()
     {
         $searchModel = new SearchGaleria();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Galeria::find(),//->where(['id_user' => $user['id']]),
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+            'sort' => [
+              'defaultOrder' => ['id' => SORT_DESC]
+            ]
+
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -77,7 +91,26 @@ class GaleriaController extends Controller
     {
         $model = new Galeria();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
+          $d = (new Query())->select('id')
+              ->from('user')
+              ->where(['username' => Yii::$app->user->identity->username])
+              ->one();
+          $data = date('Y-m-d h:m:s');
+          $data2 = date('d-m-Y h:m:s');
+
+          //get the instance of conteudo
+          if($conteudo = UploadedFile::getInstance($model, 'conteudo')) {
+
+              $model->conteudo = str_replace(" ", "_", substr($conteudo->baseName, 0, 10).'_G'.$data2.'.'.$conteudo->extension);
+              $conteudo->saveAs('uploud/galeria/'.$model->conteudo);
+          }else {
+              $model->conteudo = null;
+          }
+          //get the anexo name
+          $model->id_user = $d['id'];
+          $model->created_at = $data;
+          $model->save();
             return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
@@ -98,8 +131,28 @@ class GaleriaController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
+        if ($model->load(Yii::$app->request->post())) {
+          //pega nome do anedo directo da bd
+          $old_conteudo = (new Query())->select('conteudo')->from('galeria')->where(['id' => $model->id])->one();
+
+          //renomear o ficheiro
+          $data = date('Y-m-d h:m:s');
+          $data2 = date('d-m-Y h:m:s');
+
+          //get instance of conteudo
+          if(file_exists('uploud/galeria/'.$old_conteudo['conteudo']) && $conteudo = UploadedFile::getInstance($model, 'conteudo')) {
+
+              $model->conteudo = str_replace(" ", "_", substr ($conteudo->baseName, 0, 10).'_G-'.$data2.'.'.$conteudo->extension);
+               unlink('uploud/galeria/'.$old_conteudo['conteudo']);
+              //echo "file ".$old_conteudo['conteudo']." existe";
+              $conteudo->saveAs('uploud/galeria/'.$model->conteudo);
+          }else {
+              $model->conteudo = $old_conteudo['conteudo'];
+          }
+
+          $model->updated_at = $data;
+          $model->save();
+          return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
         return $this->render('update', [
@@ -117,7 +170,15 @@ class GaleriaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $old_conteudo = (new Query())->select('conteudo')->from('galeria')->where(['id' => $model->id])->one();
+
+        if(file_exists('uploud/galeria/'.$old_conteudo['conteudo']) ) {
+            unlink('uploud/galeria/'.$old_conteudo['conteudo']);
+            $model->delete();
+        }else {
+            $model->delete();
+        }
 
         return $this->redirect(['index', 'data' => $this->count()]);
     }

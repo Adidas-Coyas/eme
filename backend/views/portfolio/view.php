@@ -12,9 +12,8 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
-
-
 ?>
 <div class="portfolio-view">
 
@@ -25,7 +24,7 @@ $this->params['title'] = $this->title;
         <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Quer mesmo apagar este item?',
+                'confirm' => 'Queres mesmo apagar este item?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -36,9 +35,20 @@ $this->params['title'] = $this->title;
         'attributes' => [
             'id',
             'nome',
-            'descricao:ntext',
-            'foto',
+            'descricao:html',
+          //  'foto',
+            [
+                    'label' => 'foto',
+                    'value' => function($data){
+                        return Html::img('uploud/portfolio/'.$data->foto,
+                                ['width' => '200px', 'heigth' => '120px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
             'lang',
+            'created_at',
+            'updated_at',
         ],
     ]) ?>
 

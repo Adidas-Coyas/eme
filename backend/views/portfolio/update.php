@@ -12,16 +12,15 @@ $this->params['breadcrumbs'][] = 'Atualizar';
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
-
-
 ?>
 <div class="portfolio-update">
-    <div class="col-md-10 col-md-offset-1">
-        <?= $this->render('_form', [
-            'model' => $model,
-        ]) ?>
-    </div>
 
+  
+
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
 
 </div>

@@ -12,17 +12,12 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
-
-
 ?>
 <div class="portfolio-index">
-
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a('Adicionar Portfolio', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Portfolio', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -31,11 +26,25 @@ $this->params['title'] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+          //  'id',
+
+          //  'foto',
+            [
+                    'label' => 'foto',
+                    'value' => function($data){
+                        return Html::img('uploud/portfolio/'.$data->foto,
+                                ['width' => '80px', 'heigth' => '80px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
             'nome',
-            'descricao:ntext',
-            'foto',
-            'lang',
+            'descricao:html',
+          //  'created_at',
+
+          //  'lang',
+            //
+            //'updated_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

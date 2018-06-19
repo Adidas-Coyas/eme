@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 
@@ -37,10 +38,18 @@ $this->params['title'] = $this->title;
                 //'password_reset_token',
                 'email:email',
                 'categoria',
-                'status',
+              //  'status',
+                [
+                  'attribute' => 'Estado',
+                  'value' => function($data){
+                    if($data->status == 10){
+                      return "Activo";
+                    }else {
+                      return "Inactivo";
+                    }
+                  }
+                ],
                 'created_at',
                 'updated_at',
             ],
         ]) ?>
-
-

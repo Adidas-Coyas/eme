@@ -8,6 +8,9 @@ use app\models\SearchParceiros;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+use yii\db\Query;
+use yii\web\UploadedFile;
 
 /**
  * ParceirosController implements the CRUD actions for Parceiros model.
@@ -34,6 +37,7 @@ class ParceirosController extends Controller
         $data['post'] = (new \yii\db\Query())->from('post')->count();
         $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
         $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
+        $data['galeria'] = (new \yii\db\Query())->from('galeria')->count();
 
         return $data;
     }
@@ -77,7 +81,15 @@ class ParceirosController extends Controller
     {
         $model = new Parceiros();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+          $data2 = date('d-m-Y h:m:s');
+          //get the instance of anexo
+          if($logo = UploadedFile::getInstance($model, 'logo')) {
+            // substituir todos os espacos nos files por _ e concatenar com E"datade hoje"
+              $model->logo = str_replace(" ", "_", substr ($logo->baseName, 0, 10).'_PA'.$data2.'.'.$logo->extension);
+              $logo->saveAs('uploud/parceiros/'.$model->logo);
+          }
+          $model->save();
             return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
@@ -98,7 +110,25 @@ class ParceirosController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+          $old_logo = (new Query())->select('logo')->from('parceiros')->where(['id' => $model->id])->one();
+
+          //renomear o ficheiro
+          $data = date('d-m-Y h:m:s');
+
+          //get instance of foto
+          if(file_exists('uploud/parceiros/'.$old_logo['logo']) && $logo = UploadedFile::getInstance($model, 'logo')) {
+
+              $model->logo = str_replace(" ", "_", substr ($logo->baseName, 0, 10).'_PA'.$data.'.'.$logo->extension);
+               unlink('uploud/parceiros/'.$old_logo['logo']);
+              //echo "file ".$old_logo['logo']." existe";
+              $logo->saveAs('uploud/parceiros/'.$model->logo);
+          }else {
+              $model->logo = $old_logo['logo'];
+          }
+
+
+          $model->save();
             return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
@@ -117,8 +147,15 @@ class ParceirosController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+      $model = $this->findModel($id);
+      $old_logo = (new Query())->select('logo')->from('parceiros')->where(['id' => $model->id])->one();
 
+      if(file_exists('uploud/parceiros/'.$old_logo['logo']) ) {
+          unlink('uploud/parceiros/'.$old_logo['logo']);
+          $model->delete();
+      }else {
+          $model->delete();
+      }
         return $this->redirect(['index', 'data' => $this->count()]);
     }
 

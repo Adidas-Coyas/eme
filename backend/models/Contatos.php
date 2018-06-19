@@ -52,8 +52,8 @@ class Contatos extends \yii\db\ActiveRecord
             'email' => 'Email',
             'fax' => 'Fax',
             'localizacao' => 'Localizacao',
-            'descricao_pt' => 'Descricao Pt',
-            'lang' => 'Lang',
+            'descricao_pt' => 'Descricao',
+            'lang' => 'Linguagem',
         ];
     }
 }

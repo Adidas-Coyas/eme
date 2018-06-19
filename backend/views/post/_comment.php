@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($comentario, 'autor')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($comentario, 'comentario')->textarea(['rows' => 6])->label('Comentar') ?>
+    <?= $form->field($comentario, 'comentario')->textarea(['rows' => 3])->label('Comentar') ?>
 
     <?php // $form->field($comentario, 'created_at')->textInput() ?>
 

@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 <div class="testimunhos-index">
@@ -20,7 +21,7 @@ $this->params['title'] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Adiçionar Testimunhos', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Adicionar Testimunhos', ['create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([
@@ -29,9 +30,19 @@ $this->params['title'] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+          //  'id',
+          //  'nome',
+            [
+                    'label' => 'Foto',
+                    'value' => function($data){
+                        return Html::img('uploud/testimunho/'.$data->foto,
+                                ['width' => '80px', 'heigth' => '80px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
             'nome',
-            'descricao:ntext',
+            'descricao:html',
             'lang',
 
             ['class' => 'yii\grid\ActionColumn'],

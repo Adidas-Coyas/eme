@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 <div class="testimunhos-view">
@@ -30,9 +31,19 @@ $this->params['title'] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'nome',
-            'descricao:ntext',
+            //'foto',
+            [
+                    'label' => 'Foto',
+                    'value' => function($data){
+                        return Html::img('uploud/testimunho/'.$data->foto,
+                                ['width' => '250px', 'heigth' => '200px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
+            'descricao:html',
             'lang',
         ],
     ]) ?>

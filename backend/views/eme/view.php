@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 <div class="eme-view">
@@ -31,9 +32,9 @@ $this->params['title'] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'sobre:ntext',
-            'missao:ntext',
+          //  'id',
+            'sobre:html',
+            'missao:html',
             'lang',
         ],
     ]) ?>

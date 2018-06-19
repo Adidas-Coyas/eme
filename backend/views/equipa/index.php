@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 <div class="equipa-index">
@@ -29,11 +30,34 @@ $this->params['title'] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
+            //'foto',
+            [
+                    'label' => 'foto',
+                    'value' => function($data){
+                        return Html::img('uploud/equipa/'.$data->foto,
+                                ['width' => '80px', 'heigth' => '80px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
             'nome',
-            'foto',
-            'sobre_pt:ntext',
-            'sobre_en:ntext',
+          //  'sobre_pt:html',
+          [
+            'attribute' => 'Portugues',
+            'value' => function($data){
+              return substr (Html::decode($data->sobre_pt), 0, 40);
+            },
+            'format' => 'html'
+          ],
+          //  'sobre_en:html',
+            [
+              'attribute' => 'Ingles',
+              'value' => function($data){
+                return substr (Html::decode($data->sobre_en), 0, 40);
+              },
+              'format' => 'html'
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

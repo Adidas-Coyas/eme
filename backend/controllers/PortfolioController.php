@@ -8,6 +8,9 @@ use app\models\SearchPortfolio;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+use yii\db\Query;
+use yii\web\UploadedFile;
 
 /**
  * PortfolioController implements the CRUD actions for Portfolio model.
@@ -34,6 +37,7 @@ class PortfolioController extends Controller
         $data['post'] = (new \yii\db\Query())->from('post')->count();
         $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
         $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
+        $data['galeria'] = (new \yii\db\Query())->from('galeria')->count();
 
         return $data;
     }
@@ -45,7 +49,17 @@ class PortfolioController extends Controller
     public function actionIndex()
     {
         $searchModel = new SearchPortfolio();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+      //  $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Portfolio::find(),//->where(['id_user' => $user['id']]),
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+            'sort' => [
+              'defaultOrder' => ['created_at' => SORT_DESC]
+            ]
+
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -77,8 +91,25 @@ class PortfolioController extends Controller
     {
         $model = new Portfolio();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
+        if ($model->load(Yii::$app->request->post())) {
+        /*  $d = (new Query())->select('id')
+              ->from('user')
+              ->where(['username' => Yii::$app->user->identity->username])
+              ->one();*/
+          $data = date('Y-m-d h:m:s');
+          $data2 = date('d-m-Y h:m:s');
+          //get the instance of anexo
+          if($foto = UploadedFile::getInstance($model, 'foto')) {
+              $model->foto = str_replace(" ", "_", substr ($foto->baseName, 0, 10).'_P'.$data2.'.'.$foto->extension);
+              $foto->saveAs('uploud/portfolio/'.$model->foto);
+          }else {
+              $model->foto = null;
+          }
+          //get the anexo name
+          //$model->id_user = $d['id'];
+          $model->created_at = $data;
+          $model->save();
+            return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
         }
 
         return $this->render('create', [
@@ -98,7 +129,26 @@ class PortfolioController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+          $old_foto = (new Query())->select('foto')->from('portfolio')->where(['id' => $model->id])->one();
+        
+          //renomear o ficheiro
+          $data = date('Y-m-d h:m:s');
+          $data2 = date('d-m-Y h:m:s');
+
+          //get instance of foto
+          if(file_exists('uploud/portfolio/'.$old_foto['foto']) && $foto = UploadedFile::getInstance($model, 'foto')) {
+
+              $model->foto = str_replace(" ", "_", substr ($foto->baseName, 0, 10).'_P'.$data2.'.'.$foto->extension);
+               unlink('uploud/portfolio/'.$old_foto['foto']);
+              //echo "file ".$old_foto['foto']." existe";
+              $foto->saveAs('uploud/portfolio/'.$model->foto);
+          }else {
+              $model->foto = $old_foto['foto'];
+          }
+
+          $model->updated_at = $data;
+          $model->save();
             return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count(),]);
         }
 
@@ -117,9 +167,17 @@ class PortfolioController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+      $model = $this->findModel($id);
+      $old_foto = (new Query())->select('foto')->from('portfolio')->where(['id' => $model->id])->one();
 
-        return $this->redirect(['index', 'data' => $this->count()]);
+      if(file_exists('uploud/portfolio/'.$old_foto['foto']) ) {
+          unlink('uploud/portfolio/'.$old_foto['foto']);
+          $model->delete();
+      }else {
+          $model->delete();
+      }
+
+        return $this->redirect(['index', 'data' => $this->count(),]);
     }
 
     /**

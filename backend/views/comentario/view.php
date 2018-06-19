@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = 'Autor '.$this->title;
 ?>
 
@@ -31,10 +32,14 @@ $this->params['title'] = 'Autor '.$this->title;
             'attributes' => [
                 'id',
                 'autor',
-                'comentario:ntext',
+                'comentario:html',
                 'created_at',
                 'updated_at',
                 'respondeu',
-                'id_post',
+              //  'id_post',
+                [
+                  'attribute' => 'Post',
+                  'value' => 'post.title'
+                ],
             ],
         ]) ?>

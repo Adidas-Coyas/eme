@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 <div class="parceiros-view">
@@ -31,11 +32,20 @@ $this->params['title'] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+          //  'id',
             'nome',
-            'descricao_pt:ntext',
-            'descricao_en:ntext',
-            'logo',
+            //'logo',
+            [
+                    'label' => 'Logo',
+                    'value' => function($data){
+                        return Html::img('uploud/parceiros/'.$data->logo,
+                                ['width' => '250px', 'heigth' => '200px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
+            'descricao_pt:html',
+            'descricao_en:html',
         ],
     ]) ?>
 

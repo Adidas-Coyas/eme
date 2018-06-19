@@ -32,7 +32,7 @@ class Parceiros extends \yii\db\ActiveRecord
             [['nome', 'logo'], 'required'],
             [['descricao_pt', 'descricao_en'], 'string'],
             [['nome'], 'string', 'max' => 50],
-            [['logo'], 'string', 'max' => 100],
+            [['logo'], 'file', 'extensions' => 'png, jpeg, jpg, gif'],
         ];
     }
 

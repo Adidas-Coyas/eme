@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 <div class="servicos-index">
@@ -28,10 +29,20 @@ $this->params['title'] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
+          //  'icon',
+            [
+                    'label' => 'Icon',
+                    'value' => function($data, $key, $index, $column){
+                        return Html::img('uploud/servicos/'.$data->icon,
+                                ['width' => '80px', 'heigth' => '80px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
             'nome',
-            'descricao:ntext',
-            'icon',
+            'descricao:html',
+
             'lang',
 
             ['class' => 'yii\grid\ActionColumn'],

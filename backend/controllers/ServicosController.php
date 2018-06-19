@@ -8,6 +8,9 @@ use app\models\SearchServicos;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+use yii\db\Query;
+use yii\web\UploadedFile;
 
 /**
  * ServicosController implements the CRUD actions for Servicos model.
@@ -34,6 +37,7 @@ class ServicosController extends Controller
         $data['post'] = (new \yii\db\Query())->from('post')->count();
         $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
         $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
+        $data['galeria'] = (new \yii\db\Query())->from('galeria')->count();
 
         return $data;
     }
@@ -77,7 +81,15 @@ class ServicosController extends Controller
     {
         $model = new Servicos();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+          $data2 = date('d-m-Y h:m:s');
+          //get the instance of anexo
+          if($icon = UploadedFile::getInstance($model, 'icon')) {
+            // substituir todos os espacos nos files por _ e concatenar com E"datade hoje"
+              $model->icon = str_replace(" ", "_", substr ($icon->baseName, 0, 10).'_E'.$data2.'.'.$icon->extension);
+              $icon->saveAs('uploud/servicos/'.$model->icon);
+          }
+           $model->save();
             return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
@@ -98,7 +110,25 @@ class ServicosController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+          $old_icon = (new Query())->select('icon')->from('servicos')->where(['id' => $model->id])->one();
+
+         //renomear o ficheiro
+         $data = date('d-m-Y h:m:s');
+
+         //get instance of icon
+         if(file_exists('uploud/servicos/'.$old_icon['icon']) && $icon = UploadedFile::getInstance($model, 'icon')) {
+
+             $model->icon = str_replace(" ", "_", substr ($icon->baseName, 0, 10).'_E'.$data.'.'.$icon->extension);
+              unlink('uploud/servicos/'.$old_icon['icon']);
+             //echo "file ".$old_icon['icon']." existe";
+             $icon->saveAs('uploud/servicos/'.$model->icon);
+         }else {
+             $model->icon = $old_icon['icon'];
+         }
+
+
+         $model->save();
             return $this->redirect(['view', 'id' => $model->id, 'data' => $this->count()]);
         }
 
@@ -117,7 +147,15 @@ class ServicosController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+      $model = $this->findModel($id);
+      $old_icon = (new Query())->select('icon')->from('servicos')->where(['id' => $model->id])->one();
+
+      if(file_exists('uploud/servicos/'.$old_icon['icon']) ) {
+          unlink('uploud/servicos/'.$old_icon['icon']);
+          $model->delete();
+      }else {
+          $model->delete();
+      }
 
         return $this->redirect(['index', 'data' => $this->count(),]);
     }

@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class ProjetosController extends Controller
 {
     /**
-     * {@inheritdoc}
+     * {@inheritdoc} 
      */
     public function behaviors()
     {
@@ -34,6 +34,7 @@ class ProjetosController extends Controller
         $data['post'] = (new \yii\db\Query())->from('post')->count();
         $data['comentario'] = (new \yii\db\Query())->from('comentario')->count();
         $data['parceiro'] = (new \yii\db\Query())->from('parceiros')->count();
+        $data['galeria'] = (new \yii\db\Query())->from('galeria')->count();
 
         return $data;
     }

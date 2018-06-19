@@ -32,7 +32,7 @@ class Equipa extends \yii\db\ActiveRecord
             [['nome', 'foto', 'sobre_pt'], 'required'],
             [['sobre_pt', 'sobre_en'], 'string'],
             [['nome'], 'string', 'max' => 50],
-            [['foto'], 'string', 'max' => 100],
+            [['foto'], 'file', 'extensions' => 'jpg, png, gif, jpeg'],
         ];
     }
 
@@ -45,8 +45,8 @@ class Equipa extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nome' => 'Nome',
             'foto' => 'Foto',
-            'sobre_pt' => 'Sobre Pt',
-            'sobre_en' => 'Sobre En',
+            'sobre_pt' => 'Sobre Versão pt',
+            'sobre_en' => 'Sobre Versão en',
         ];
     }
 }

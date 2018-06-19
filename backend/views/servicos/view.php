@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 <div class="servicos-view">
@@ -31,10 +32,20 @@ $this->params['title'] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+          //  'id',
             'nome',
-            'descricao:ntext',
-            'icon',
+            //'icon',
+            [
+                    'label' => 'Capa',
+                    'value' => function($data){
+                        return Html::img('uploud/servicos/'.$data->icon,
+                                ['width' => '250px', 'heigth' => '200px']
+                            );
+                    },
+                    'format' => 'html',
+            ],
+            'descricao:html',
+
             'lang',
         ],
     ]) ?>

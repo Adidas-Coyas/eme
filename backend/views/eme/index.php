@@ -12,13 +12,15 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['user'] = $data['user'];
 $this->params['post'] = $data['post'];
 $this->params['parceiro'] = $data['parceiro'];
+$this->params['galeria'] = $data['galeria'];
 $this->params['title'] = $this->title;
 ?>
 <div class="eme-index">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Sobre Nos', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Sobre Nos', ['create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Ver Contatos', ['contatos/index'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([
@@ -27,9 +29,9 @@ $this->params['title'] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'sobre:ntext',
-            'missao:ntext',
+            //'id',
+            'sobre:html',
+            'missao:html',
             'lang',
 
             ['class' => 'yii\grid\ActionColumn'],

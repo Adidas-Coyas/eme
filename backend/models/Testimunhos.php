@@ -28,9 +28,10 @@ class Testimunhos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome'], 'required'],
+            [['nome', 'foto'], 'required'],
             [['descricao', 'lang'], 'string'],
             [['nome'], 'string', 'max' => 50],
+            [['foto'], 'file', 'extensions' => 'png, jpeg, git, jpg'],
         ];
     }
 
@@ -43,7 +44,7 @@ class Testimunhos extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nome' => 'Nome',
             'descricao' => 'Descricao',
-            'lang' => 'Lang',
+            'lang' => 'Linguagem',
         ];
     }
 }
